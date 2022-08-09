@@ -39,7 +39,7 @@ export default function Registration() {
 
     useEffect(() => {
         Axios.get("http://localhost:3001/login").then((response) => {
-            if(response.data.loggedIn == true ) {
+            if(response.data.loggedIn === true ) {
                 setLoginStatus(response.data.user[0].login);
             }
         });
@@ -66,7 +66,9 @@ export default function Registration() {
             <br></br>
             <input type='password' placeholder = 'Votre mot de passe' onChange={(event) => setPasswordConn(event.target.value)}></input>
             <br></br>
-            <button className= "button2" onClick={connect}>Se connecter</button>      
+            
+            <button className= "button2" onClick={connect}>Se connecter</button> 
+            
         </div>
         <h1>{loginStatus}</h1>
         <h1>{role}</h1>

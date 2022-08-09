@@ -9,12 +9,19 @@ const saltRounds = 10
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const db = mysql.createPool({
+/*const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "11139598",
     database:"intranetdb",
-});
+});*/ 
+const db = mysql.createPool({
+    user: 'root',
+    host: 'localhost',
+    password: '',
+    database: 'clientsys',
+    
+})
 
 app.use(cors({
     origin: ["http://localhost:3000"],
@@ -36,6 +43,10 @@ app.use(session({
 
 })
 );
+
+
+/*******************connection and regisration************** */
+
 
 app.post('/register', (req, res) => {
     const username = req.body.user ;
@@ -86,25 +97,71 @@ app.post('/login', (req, res) =>{
     )
 })
 
-// app.get("/api/get", (req, res) => {
-//     const sqlSelect = "SELECT * FROM clientmoral";
-//     db.query(sqlSelect, (err, result) =>{
-//         res.send(result);
-//         });
-// })
+/******************* Manipulation des clients ************** */
+app.post('/api/insert', (req, res) => {
+    console.log(req.body);
+    const nom = req.body.nom;
+    const prenom = req.body.prenom;
+    const CIN = req.body.CIN;
+    const email = req.body.email;
 
-// app.post("/api/insert", (req, res) => {
-//     const n = req.body.nom 
-//     const g = req.body.gouvernorat
-//     const sqlInsert= " INSERT INTO clientmoral (nom, gouvernorat) VALUES (?,?)";
-//     db.query(sqlInsert, [n, g], (err, result) =>{
-//         console.log(result);
-//         });
-// });
+    db.query('INSERT INTO client_phy (Nom, Prenom, CIN, email) VALUES (?,?,?,?)',[nom, prenom, CIN, email],
+    (err, result) => {
+    console.log(result)
+    }
+    );
 
-// app.get( "/api/insert", (req, res) => {
-//     res.send("Hello world!");
-// })
+});
+
+
+app.get('/api/get/:id', (req, res) => {
+    const { id } = req.params;
+    db.query('SELECT * FROM client_phy WHERE id = ?', id,
+    (err, result) => {
+    res.send(result)
+    }
+    );
+
+})
+
+app.get('/api/get', (req, res) => {
+
+    db.query('SELECT * FROM client_phy ',
+    (err, result) => {
+    res.send(result)
+    }
+    );
+
+})
+
+app.put('/api/update/:id', (req, res) => {
+    const { id } = req.params;
+    const nom = req.body.nom;
+    const prenom = req.body.prenom;
+    const CIN = req.body.CIN;
+    const email = req.body.email;
+    db.query("UPDATE client_phy SET Nom=? , Prenom=?, CIN=?, email=? WHERE id=?",[nom, prenom, CIN, email, id],
+    (err, result) => {
+    res.send(result)
+    }
+    );
+
+})
+
+app.delete('/api/delete/:id', (req, res) => {
+    
+    const { id } = req.params;
+
+    db.query('DELETE FROM client_phy WHERE id= ?',id,
+    (err, result) => {
+        if(err) console.log(err)
+        console.log(result)
+    }
+    );
+
+});
+
+
 app.listen(3001, ()=> {
     console.log('running on port 3001');
 });

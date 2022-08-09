@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+}
+.header{
+    height: 55px;
+    width:100%;
+    position: relative;
+    background-color:salmon;
+}
+nav{
+    display:flex;
+    padding: 0% 2%;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-links{
+    flex: 1;
+    text-align: left;
+    
+}
+
+.nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 2px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.nav-links ul li::after{
+    content:'';
+    width: 0%;
+    background: red;
+    height: 2px;
+    background: red;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+.feature-img{
+    height: 90%;
+    width: 60%;
+    position:absolute;
+    bottom: 0;
+    right: 0px;
+
+}
+
+
+
+.buttons {
+    width:400px;margin: 15% 10%;
+      background-color: #cf245f;
+      background-image: linear-gradient(to bottom right, #fcd34d, #ef4444, #ec4899);
+      border: 0;
+      border-radius: .25rem;
+      box-sizing: border-box;
+      
+      cursor: pointer;
+      font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+      font-size: 1.125rem; /* 18px */
+      font-weight: 600;
+      line-height: 1.75rem; /* 28px */
+      padding: 1rem 1.25rem;
+      text-align: center;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      color: aliceblue;
+    }
+    
+    .buttons:hover {
+      box-shadow: none;
+    }
+    
+    @media (min-width: 1024px) {
+      .buttons{
+        font-size: 1.5rem; /* 24px */
+        padding: 1rem 1.5rem;
+        line-height: 2rem; /* 32px */
+      }
+    }

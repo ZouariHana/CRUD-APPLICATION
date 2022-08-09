@@ -1,0 +1,134 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+   
+}
+.header{
+    height: 55px;
+    width:100%;
+    position: relative;
+    background-color:salmon;
+}
+nav{
+    display:flex;
+    padding: 0% 2%;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-links{
+    flex: 1;
+    text-align: right;
+    
+}
+
+.nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 2px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+.nav-links ul li a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.nav-links ul li::after{
+    content:'';
+    width: 0%;
+    background: red;
+    height: 2px;
+    background: red;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after{
+    width: 100%;
+}
+.Liste{
+    padding-top: 7%;
+   
+    text-align: center;
+    
+    
+}
+.Liste h1 {
+   margin-bottom: 20px;
+   color:royalblue;
+    
+    
+}
+.table{
+    
+    border-collapse: collapse;
+    margin: auto;
+    font-size: 1.2em;
+    font-family: sans-serif;
+    
+    box-shadow:royalblue;
+    table-layout: auto;
+    width: 80%;
+}
+
+.table thead tr {
+    background-color: royalblue;
+    color: aliceblue;
+    text-align: left;
+}
+
+.table th,
+.table td  {
+    padding: 20px, 22px;
+}
+.table tbody tr {
+    border-bottom: 2px solid royalblue;
+}
+
+.table tbody tr:nth-of-type(even){
+    background-color: seashell;
+}
+.table tbody tr:last-of-type{
+    border-bottom: royalblue;
+}
+
+.btn{
+    border: none;
+    color: white;
+    padding: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.btn-upd {
+    background-color:palegreen;
+
+}
+.btn-del {
+    background-color:red;
+
+}
+.btn-view {
+    background-color:cornflowerblue;
+
+}
+.btn-contact {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color:salmon;
+
+
+}
