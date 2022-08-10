@@ -9,23 +9,23 @@ const saltRounds = 10
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-/*const db = mysql.createPool({
+const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "11139598",
     database:"intranetdb",
-});*/ 
-const db = mysql.createPool({
-    user: 'root',
-    host: 'localhost',
-    password: '',
-    database: 'clientsys',
+});
+// const db = mysql.createPool({
+//     user: 'root',
+//     host: 'localhost',
+//     password: '',
+//     database: 'clientsys',
     
-})
+// })
 
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
 app.use(express.json());

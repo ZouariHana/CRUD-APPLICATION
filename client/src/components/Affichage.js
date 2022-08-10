@@ -33,8 +33,10 @@ function Affichage_cl() {
                 <nav>
                     <div className="nav-links">
                     <ul>
-                        
+                        <li><a href="/choose">Rentrez à la page principale</a></li>
                         <li><a href="/">déconnectez-vous</a></li>
+                        
+
                     </ul>
                     </div>
                 </nav>
@@ -86,6 +88,7 @@ function Affichage_cl() {
         <Link to="/addContact">
             <button className="btn btn-contact"> Ajouter un client </button>
         </Link>
+
   </div></div>
     )
 }

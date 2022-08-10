@@ -11,7 +11,7 @@ export default function Registration() {
     const [usernameConn, setUsernameConn] = useState('');
     const [passwordConn, setPasswordConn] = useState('');
 
-    const [loginStatus, setLoginStatus] = useState("")
+    // const [loginStatus, setLoginStatus] = useState("")
     const [role, setRole] = useState("")
 
     const [msg, setmsg] = useState("")
@@ -37,15 +37,15 @@ export default function Registration() {
                 alert(response.data.message);
                 
             } else {
-                setLoginStatus(response.data[0].login);
+                // setLoginStatus(response.data[0].login);
                 setRole(response.data[0].role)
                 if ( response.data[0].role === ""){
-                    alert("Vous n'avez pas d'accés!")
+                    alert("Vous n'êtes pas encore accordé d'accés.")
                    
                 }
                 else{
-                    alert(`Vous avez acces !`)
-                    setmsg("Accedez au page ")
+                    alert(`Vous avez accès!`);
+                    setmsg("Accédez à la page ");
                     
                 }
                 
@@ -53,13 +53,13 @@ export default function Registration() {
             }
     });}
 
-    useEffect(() => {
-        Axios.get("http://localhost:3001/login").then((response) => {
-            if(response.data.loggedIn === true ) {
-                setLoginStatus(response.data.user[0].login);
-            }
-        });
-    }, []);
+    // useEffect(() => {
+    //     Axios.get("http://localhost:3001/login").then((response) => {
+    //         if(response.data.loggedIn === true ) {
+    //             setLoginStatus(response.data.user[0].login);
+    //         }
+    //     });
+    // }, []);
     
   return (
     <div className="App">
@@ -78,20 +78,20 @@ export default function Registration() {
             <h1>Inscription</h1>
             <label> Login : </label>
             <br></br>
-            <input type='text' onChange={(event) => setUsername(event.target.value)}/>
+            <input  type='text' onChange={(event) => setUsername(event.target.value)}/>
             <br></br>
             <label>Mot de passe :</label>
             <br></br>
-            <input type='password' onChange={(event) => setPassword(event.target.value)}/>
+            <input  type='password' onChange={(event) => setPassword(event.target.value)}/>
             <br></br>
             <button className="button2" onClick={register}> Sousmettre</button>
 
         </div>
         <div className= 'login'>
             <h1>Connexion</h1>
-            <input type='text' placeholder='Votre Login' onChange={(event) => setUsernameConn(event.target.value)}></input>
+            <input  type='text' placeholder='Votre Login' onChange={(event) => setUsernameConn(event.target.value)}></input>
             <br></br>
-            <input type='password' placeholder = 'Votre mot de passe' onChange={(event) => setPasswordConn(event.target.value)}></input>
+            <input  type='password' placeholder = 'Votre mot de passe' onChange={(event) => setPasswordConn(event.target.value)}></input>
             <br></br>
             
             <button className= "button2" onClick={connect}>Se connecter</button> 
