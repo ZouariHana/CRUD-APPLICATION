@@ -18,8 +18,8 @@ const session = require('express-session');
 const db = mysql.createPool({
     user: 'root',
     host: 'localhost',
-    password: '11139598',
-    database: 'intranetdb',
+    password: '',
+    database: 'clientsys',
     
 })
 

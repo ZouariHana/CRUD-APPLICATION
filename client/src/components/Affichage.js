@@ -34,7 +34,7 @@ function Affichage_cl() {
                     <div className="nav-links">
                     <ul>
                         
-                        <li><a href="/">Home</a></li>
+                        <li><a href="/">déconnectez-vous</a></li>
                     </ul>
                     </div>
                 </nav>

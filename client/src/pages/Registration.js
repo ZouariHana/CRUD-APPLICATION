@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Axios from 'axios'
-import '../App.css'
+import './Registration.css'
 import { Link } from 'react-router-dom';
 
 
@@ -13,6 +13,9 @@ export default function Registration() {
 
     const [loginStatus, setLoginStatus] = useState("")
     const [role, setRole] = useState("")
+
+    const [msg, setmsg] = useState("")
+
 
     Axios.defaults.withCredentials = true ;
 
@@ -29,11 +32,24 @@ export default function Registration() {
             userConn : usernameConn,
             pwdConn: passwordConn 
         }).then( (response) => {
+            setmsg("")
             if (response.data.message) {
-                setLoginStatus(response.data.message);
+                alert(response.data.message);
+                
             } else {
                 setLoginStatus(response.data[0].login);
                 setRole(response.data[0].role)
+                if ( response.data[0].role === ""){
+                    alert("Vous n'avez pas d'accés!")
+                   
+                }
+                else{
+                    alert(`Vous avez acces !`)
+                    setmsg("Accedez au page ")
+                    
+                }
+                
+               
             }
     });}
 
@@ -47,6 +63,17 @@ export default function Registration() {
     
   return (
     <div className="App">
+    <div className="header">
+                    <nav>
+                        <div className="nav-links">
+                        <ul>
+                            
+                            <li><a href="/">Home</a></li>
+                        </ul>
+                        </div>
+                    </nav>
+            </div>       
+    <div className='form'>
         <div className='registration'>
             <h1>Inscription</h1>
             <label> Login : </label>
@@ -70,9 +97,11 @@ export default function Registration() {
             <button className= "button2" onClick={connect}>Se connecter</button> 
             
         </div>
-        <Link to="/"><h1>{loginStatus}</h1></Link>
-        <h1>{role}</h1>
-        {/* <Link to="/"><button id='button1'>Page d'acceuil</button></Link>  */}
+        
+        <h1><a href="/">{msg}{role}</a></h1>
+       
+
+    </div>
     </div>
   )
 }

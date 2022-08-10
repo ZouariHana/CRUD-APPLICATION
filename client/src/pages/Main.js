@@ -2,7 +2,7 @@ import  Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 import Admin from "../components/admin"
-import Agent from "../components/agent"
+import Choose from '../components/choose'
 import Initial from "../components/initial"
 
 
@@ -17,7 +17,7 @@ export default function Main() {
         setRole(response.data.user[0].role);      }
     })
   }, [])
-  return (<div>{  role === "" && <Initial/> } { role === "admin" && <Admin/> } {role === "agent" && <Agent/>}</div> 
+  return (<div>{  role === "" && <Initial/> } { role === "admin" && <Admin/> } {role === "agent" && <Choose/>}</div> 
 
   )
 }
