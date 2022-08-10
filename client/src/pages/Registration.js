@@ -70,9 +70,9 @@ export default function Registration() {
             <button className= "button2" onClick={connect}>Se connecter</button> 
             
         </div>
-        <h1>{loginStatus}</h1>
+        <Link to="/"><h1>{loginStatus}</h1></Link>
         <h1>{role}</h1>
-        <Link to="/"><button id='button1'>Page d'acceuil</button></Link> 
+        {/* <Link to="/"><button id='button1'>Page d'acceuil</button></Link>  */}
     </div>
   )
 }
