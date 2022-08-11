@@ -17,7 +17,8 @@ export default function Main() {
         setRole(response.data.user[0].role);      }
     })
   }, [])
-  return (<div>{  role === "" && <Initial/> } { role === "admin" && <Admin/> } {role === "agent" && <Choose/>}</div> 
+  return (
+  <div>{  role === "" && <Initial/> } { role === "admin" && <Admin/> } {role === "agent" && <Choose/>}</div> 
 
   )
 }

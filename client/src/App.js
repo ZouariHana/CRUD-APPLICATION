@@ -8,14 +8,15 @@ import Affichage_cl from './components/Affichage';
 import AddEdit from './components/AddEdit';
 import View from './components/view';
 import Main from './pages/Main';
+import Initial from './components/initial';
 function App() {
   return ( 
       <Router>
         <Routes>
-          <Route path= '/registration' exact element={<Registration/>} />;
+          <Route path= '/registration'  element={<Registration/>} />;
           
-          
-          <Route  path='/'  element={<Main />} />;
+          <Route  path='/'  element={<Initial />} />;
+          <Route  path='/main'  element={<Main />} />;
           <Route  path='/choose'  element={<Choose />} />;
           <Route  path='/affichage'  element={<Affichage_cl />} />;
           <Route  path='/addcontact'  element={<AddEdit />} />;

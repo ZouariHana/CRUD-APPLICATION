@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import "./initial.css"
 import img1 from "./img1.jpg"
 
-export default function initial () {  
+export default function Initial () {  
   return (
   <div>
       <div className="header">
@@ -11,7 +11,7 @@ export default function initial () {
             <div className="nav-links">
               <ul>
                         
-              <Link to="/registration"><li><a href="">Connectez-vous</a></li></Link>
+              <li><a href="/registration">Connectez-vous</a></li>
               </ul>
             </div>
           </nav>

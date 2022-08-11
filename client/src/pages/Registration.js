@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Axios from 'axios'
 import './Registration.css'
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 
 export default function Registration() {
@@ -11,7 +11,7 @@ export default function Registration() {
     const [usernameConn, setUsernameConn] = useState('');
     const [passwordConn, setPasswordConn] = useState('');
 
-    // const [loginStatus, setLoginStatus] = useState("")
+    const [loginStatus, setLoginStatus] = useState("")
     const [role, setRole] = useState("")
 
     const [msg, setmsg] = useState("")
@@ -37,7 +37,7 @@ export default function Registration() {
                 alert(response.data.message);
                 
             } else {
-                // setLoginStatus(response.data[0].login);
+                setLoginStatus(response.data[0].login);
                 setRole(response.data[0].role)
                 if ( response.data[0].role === ""){
                     alert("Vous n'êtes pas encore accordé d'accés.")
@@ -53,13 +53,13 @@ export default function Registration() {
             }
     });}
 
-    // useEffect(() => {
-    //     Axios.get("http://localhost:3001/login").then((response) => {
-    //         if(response.data.loggedIn === true ) {
-    //             setLoginStatus(response.data.user[0].login);
-    //         }
-    //     });
-    // }, []);
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login").then((response) => {
+           if(response.data.loggedIn === true ) {
+               setLoginStatus(response.data.user[0].login);
+           }
+      });
+    }, []);
     
   return (
     <div className="App">
@@ -73,35 +73,40 @@ export default function Registration() {
                         </div>
                     </nav>
             </div>       
-    <div className='form'>
-        <div className='registration'>
-            <h1>Inscription</h1>
-            <label> Login : </label>
-            <br></br>
-            <input  type='text' onChange={(event) => setUsername(event.target.value)}/>
-            <br></br>
-            <label>Mot de passe :</label>
-            <br></br>
-            <input  type='password' onChange={(event) => setPassword(event.target.value)}/>
-            <br></br>
-            <button className="button2" onClick={register}> Sousmettre</button>
-
-        </div>
-        <div className= 'login'>
-            <h1>Connexion</h1>
-            <input  type='text' placeholder='Votre Login' onChange={(event) => setUsernameConn(event.target.value)}></input>
-            <br></br>
-            <input  type='password' placeholder = 'Votre mot de passe' onChange={(event) => setPasswordConn(event.target.value)}></input>
-            <br></br>
+        <div className="body">
             
-            <button className= "button2" onClick={connect}>Se connecter</button> 
+            <h2>Si vous etes un nouveau employé vous pouvez s'inscrire pour que l'admin puisse vous accorder l'acces au données du client<br/>
+            Une fois vous obtenez vos accés vous pouvez vous connecter en remplissant les champs ci dessous! (inscription)<br/>
+            NB : Les autres employés ne sont pas concernés que par les champs connexion !
+            </h2>
+                <div className='container1'>
+                    <div className='contact-box'>
+                        <div className="left"></div>
+                        <div className="right">
+                            <h1>Inscription</h1>
+                            <label> Login : </label>
+                        
+                            <input type='text' class="field" onChange={(event) => setUsername(event.target.value)}/>
+                            
+                            <label>Mot de passe :</label>
+                            
+                            <input type='password'class="field" onChange={(event) => setPassword(event.target.value)}/>
+                            
+                            <button className="btn1" onClick={register}> Sousmettre</button>
+                        
+                            <h1>Connexion</h1>
+                            <input type='text' class="field" placeholder='Votre Login' onChange={(event) => setUsernameConn(event.target.value)}/>
+                            <input type='password'class="field" placeholder = 'Votre mot de passe' onChange={(event) => setPasswordConn(event.target.value)}/>
+                            <button class= "btn1" onClick={connect}>Se connecter</button> 
+                        </div>
+                    </div>
+                </div>
+                <h3><a href="/main">{msg}{role}</a></h3>
+                <br/>
             
+           
         </div>
-        
-        <h1><a href="/">{msg}{role}</a></h1>
-       
-
-    </div>
+         
     </div>
   )
 }

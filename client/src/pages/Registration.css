@@ -4,6 +4,7 @@
     width:100%;
     position: relative;
     background-color:salmon;
+    margin-bottom: 20px;
 }
 nav{
     display:flex;
@@ -50,68 +51,116 @@ nav{
     width: 100%;
 }
 
-.app {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Quicksand', sans-serif;
 }
 
-.form h1{
-  margin-top: 30px;
-  margin-bottom: 20px;
+.body{
+	height: 100vh;
+	width: 100%;
 }
 
-
-.registration{
-  display: flex;
-  flex-direction: column;
-  /* width: 100%; */
-  justify-content: center;
-  align-items: center;
+.container1{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 100px;
 }
 
-.registration input {
-  width: 300px;
-  height: 50px;
-  font-size: 20px;
-  padding-left: 10px;
+.container:after{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	
+	background-size: cover;
+	filter: blur(50px);
+	z-index: -1;
+}
+.contact-box{
+	max-width: 850px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0px 0px 19px 5px rgba(0,0,0,0.19);
 }
 
-.login{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
+.left{
+	background: url("img3.jpg") no-repeat center;
+	background-size: cover;
+	height: 100%;
 }
 
-.login input {
-  width: 300px;
-  height: 50px;
-  font-size: 20px;
-  padding-left: 10px;
+.right{
+	padding: 25px 40px;
 }
-  .button2 {
-  
-      
-    border: none;
-    color: white;
-    padding: 8px 8px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    font-size: 20px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color:salmon;
-  }
-  .button2:hover {
-      background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
-      background-color:royalblue;
-  }
-  .button2:active {
-      position:relative;
-      top:1px;
-  }
 
+h1{
+	position: relative;
+	padding: 0 0 10px;
+	margin-bottom: 10px;
+}
+
+h1:after{
+	content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+   
+}
+
+.field{
+	width: 100%;
+	border: 2px solid rgba(0, 0, 0, 0);
+	outline: none;
+	background-color: rgba(230, 230, 230, 0.6);
+	padding: 0.5rem 1rem;
+	font-size: 1.1rem;
+	margin-bottom: 22px;
+	transition: .3s;
+}
+
+.field:hover{
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+textarea{
+	min-height: 150px;
+}
+
+.btn1{
+	width: 100%;
+	padding: 0.5rem 1rem;
+	background-color: tomato;
+	color: #fff;
+	font-size: 1.1rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.btn1:hover{
+    background-color: royalblue;
+}
+
+.field:focus{
+    border: 2px solid rgba(30,85,250,0.47);
+    background-color: #fff;
+}
