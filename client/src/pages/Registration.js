@@ -39,15 +39,15 @@ export default function Registration() {
             } else {
                 setLoginStatus(response.data[0].login);
                 setRole(response.data[0].role)
-                if ( response.data[0].role === ""){
-                    alert("Vous n'êtes pas encore accordé d'accés.")
+               // if ( response.data[0].role === ""){
+                //    alert("Vous n'êtes pas encore accordé d'accés.")
                    
-                }
-                else{
-                    alert(`Vous avez accès!`);
+                //}
+                //else{
+                    alert(`Vous etes connecté(e)!`);
                     setmsg("Accédez à la page ");
                     
-                }
+                //}
                 
                
             }
