@@ -36,18 +36,22 @@ export default function Registration() {
             if (response.data.message) {
                 alert(response.data.message);
                 
-            } else {
+            } 
+            else {
                 setLoginStatus(response.data[0].login);
                 setRole(response.data[0].role)
-               // if ( response.data[0].role === ""){
-                //    alert("Vous n'êtes pas encore accordé d'accés.")
+                console.log(response.data[0].role)
+                if ( response.data[0].role === null ){
+                    alert("Vous n'êtes pas encore accordé d'accés.")
+                    setmsg("")
                    
-                //}
-                //else{
+                }
+                else{
+                    
                     alert(`Vous etes connecté(e)!`);
                     setmsg("Accédez à la page ");
                     
-                //}
+                }
                 
                
             }

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 import Admin from "../components/admin"
 import Choose from '../components/choose'
-import EnAttente from '../components/EnAttente'
 
 
 export default function Main() {
@@ -18,7 +17,7 @@ export default function Main() {
     })
   }, [])
   return (
-  <div>{  role === "" && <EnAttente/> } { role === "admin" && <Admin/> } {role === "agent" && <Choose/>}</div> 
+  <div> {role === "admin" && <Admin/> }{role === "agent" && <Choose/>}</div> 
 
   )
 }
