@@ -9,19 +9,19 @@ const saltRounds = 10
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const db = mysql.createPool({
+/*const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "11139598",
     database:"intranetdb",
-});
-//  const db = mysql.createPool({
-//      user: 'root',
-//      host: 'localhost',
-//      password: '',
-//      database: 'clientsys',
+});*/
+  const db = mysql.createPool({
+      user: 'root',
+      host: 'localhost',
+      password: '',
+      database: 'clientsys',
     
-//  })
+  })
 
 app.use(cors({
     origin: ["http://localhost:3000"],
@@ -201,7 +201,7 @@ app.post("/api/create", (req, res) => {
     for (let i = 0; i < typeFields.length; i++) {
         str = str + ` ${typeFields[i].field} VARCHAR(100) ,`;
     }
-    1
+  
     
     console.log(typeof(str));
     str = str.slice(0, -1);
@@ -227,3 +227,14 @@ app.post("/api/create", (req, res) => {
 app.listen(3001, ()=> {
     console.log('running on port 3001');
 });
+
+/************************** affichage des boutons selon les types ******************/ 
+app.get('/api/get1', (req, res) => {
+
+    db.query('SELECT * FROM clienttypes ',
+    (err, result) => {
+    res.send(result)
+    }
+    );
+
+})

@@ -39,6 +39,7 @@ export default function Admin() {
   const handleClientAdd = () => {
     setTypeFields([...typeFields, {field :''}]);
   }
+
   const handleClientRemove = (index) => {
     setTypeFields([...typeFields, {field : ''}] )
     const list = [...typeFields];
@@ -56,61 +57,89 @@ export default function Admin() {
 // }
   return(
   <div>
-    <h2>- Ne laissez pas de champ(s) vides(s) quand vous appliquez</h2>
-    <h2>-Les noms des champs ne doivent pas contenir d'espace entre les mots</h2>
-    <h2>- Appuyer sur "Appliquez" pour enregistrer le nouveau type</h2>
-    <div id ="AjoutType">
-      <input type="text" placeholder='Type de client' onChange={(event) => {
-          setTable(event.target.value)
-            }}></input>
-        <button onClick={() => {
-        if (table !== "") {
-        setIsShown(true);
-        /*createEmployeeTable();*/} else {
-          alert("Veuillez tapez un nouveau type")
-        }
-          }}>Ajouter un type
-        </button>
-    </div>
-    { isShown && 
-    <div id ="AjoutChamps">
-    <form className="App" autoComplete="off">
-    <div className="form-field">
-      <label htmlFor="service">Champ(s)</label>
+    <div className="header">
+                    <nav>
+                        <div className="nav-links">
+                        <ul>
+                            
+                            <li><a href="/">déconnectez-vous</a></li>
+                        </ul>
+                        </div>
+                    </nav>
+    </div>   
 
-    {typeFields.map((certainType, index) => (
-      <div key ={index} className="clientTypes">
-       <div className="first-division">
-         <input name="clientType" type="text" id="clientType" required onChange={ (e) => {
-           handleClientChange(index, e.target.value);
-         }}/>
-          
-         {typeFields.length - 1 == index && typeFields.length < 5 &&
-         <button type="button" className="add-btn" onClick={ () => {
-             handleClientAdd();
-         }}>
-           <span>Ajouter une caractéristique</span>
-         </button>}
-       </div>
-       <div className="second-division">
-         { typeFields.length > 1 &&
-         <button type="button" className="remove-btn" onClick={(e) => {
-             handleClientRemove(index);
-         }}>
-           <span>Remove</span>
-         </button>}
-       </div>
-     </div>
-))};
-   </div>
- </form>
- </div> }
- <button type='button' className='apply-btn' onClick={() => {
-    createClientTypeTable();
-    fillClientTypesTable();
- }}>Appliquez</button>
- <Link to="/main"><button> Page principal</button></Link>
- 
- </div>
+    <div className='instructions'>
+                <h2>- Ne laissez pas de champ(s) vides(s) quand vous appliquez. <br/>
+                -Les noms des champs ne doivent pas contenir d'espace entre les mots.<br/>
+                -Appuyer sur "Appliquez" pour enregistrer le nouveau type.</h2>
+    </div>
+
+    <div id ="AjoutType">
+         <input type="text" placeholder='Type de client' 
+            onChange={(event) => {
+            setTable(event.target.value)
+            }}>
+          </input>
+                  
+          <button className='buttons1' onClick={() => {
+              if (table !== "") {
+                  setIsShown(true);
+                  /*createEmployeeTable();*/
+                } 
+              else {
+                  alert("Veuillez tapez un nouveau type")
+                  }
+              }}>Ajouter un type
+          </button>
+    </div>
+
+        { isShown && 
+          <div id ="AjoutChamps">
+            <form className="App1" autoComplete="off">
+              <div className="form-field">
+                    <label htmlFor="service">Champ(s)</label>
+
+                      {typeFields.map((certainType, index) => (
+                        <div key ={index} className="clientTypes">
+                            <div className="first-division">
+                                <input name="clientType" type="text" id="clientType" required onChange={ (e) => {
+                                  handleClientChange(index, e.target.value);
+                                }}/>
+                                  
+                                {typeFields.length - 1 == index && typeFields.length < 5 &&
+                                <button type="button" className="buttons1" onClick={ () => {
+                                    handleClientAdd();
+                                }}>
+                                  <span>Ajouter une caractéristique</span>
+                                </button>}
+
+                            </div>
+
+                            <div className="second-division">
+                                { typeFields.length > 1 &&
+                                <button type="button" className="buttons1" onClick={(e) => {
+                                    handleClientRemove(index);
+                                }}>
+                                  <span>Remove</span>
+                                </button>}
+                            </div>
+                        </div>
+                      ))};
+              </div>
+            </form>
+
+          </div> 
+        }
+
+        <div className='but'>
+          <button type='button' className='buttons1'  onClick={() => {
+          createClientTypeTable();
+          fillClientTypesTable();
+          }}>Appliquez</button>
+        </div>
+    
+    
+
+  </div>
   )
 }

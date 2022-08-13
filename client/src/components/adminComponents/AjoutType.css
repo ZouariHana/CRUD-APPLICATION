@@ -1,16 +1,67 @@
-* {
-    box-sizing: border-box;
-  }
-  .apply-btn {
-   justify-content: center;
-  }
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+}
+.header{
+  height: 55px;
+  width:100%;
+  position: relative;
+  background-color:salmon;
+}
+nav{
+  display:flex;
+  padding: 0% 2%;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-links{
+  flex: 1;
+  text-align: left;
+  
+}
+
+.nav-links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 2px 12px;
+  position: relative;
+}
+.nav-links ul li a{
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+.nav-links ul li a{
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nav-links ul li::after{
+  content:'';
+  width: 0%;
+  background: red;
+  height: 2px;
+  background: red;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+.nav-links ul li:hover::after{
+  width: 100%;
+}
+
   #AjoutType {
     width: 70vh;
     margin: 5rem auto;
     display: flex;
     justify-content: space-between;
   }
-  .App {
+  .App1{
     width: 70vh;
     margin: 5rem auto;
     display: flex;
@@ -32,8 +83,8 @@
     color: rgb(84, 84, 84);
   }
   
-  input {
-    height: 35px;
+  .input {
+    height: 45px;
     width: 100%;
     padding: 7px;
     outline: none;
@@ -41,7 +92,7 @@
     border: 1px solid rgb(220, 220, 220);
   }
   
-  input:focus {
+  .input:focus {
     border: 1px solid rgb(0, 208, 255);
   }
   
@@ -59,26 +110,31 @@
     margin: 0 5px 0.5rem 0;
     width: 100%;
   }
-  button {
-    background: none;
+  .buttons1{
+    
+    padding: 0.5rem 1rem;
+    background-color: tomato;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
     outline: none;
     cursor: pointer;
-    font-weight: 500;
-    border-radius: 2px;
-    padding: 5px 10px;
-  }
-  .first-division button {
-    align-self: flex-start;
-    display: flex;
-    align-items: center;
-    margin-top: 0.5rem;
-    color: rgb(0, 208, 255);
-    border: 1px solid rgb(0, 208, 255);
+    transition: .3s;
+  
   }
   
-  .second-division button {
-    color: red;
-    border: 1px solid red;
-    margin: 5px;
+  .buttons1:hover{
+      background-color: royalblue;
+  }
+  .but{
+    
+    margin-left: 45%;
+
+  }
+
+  .instructions h2{
+    margin-left: 20px;
+    margin-top: 40px;
+   
   }
   
