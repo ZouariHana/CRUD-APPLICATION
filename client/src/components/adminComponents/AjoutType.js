@@ -12,7 +12,16 @@ export default function Admin() {
 
   Axios.defaults.withCredentials = true ;
 
-  const createEmployeeTable = () => {
+  const fillClientTypesTable = () => {
+    Axios.post("http://localhost:3001/api/fill", {
+      table : table,
+      typeFields : typeFields
+
+    }).then((response) => {
+      console.log(response.data);
+    });
+  }
+  const createClientTypeTable = () => {
     Axios.post("http://localhost:3001/api/create", {
       table : table,
       typeFields : typeFields
@@ -97,7 +106,8 @@ export default function Admin() {
  </form>
  </div> }
  <button type='button' className='apply-btn' onClick={() => {
-    createEmployeeTable();
+    createClientTypeTable();
+    fillClientTypesTable();
  }}>Appliquez</button>
  <Link to="/main"><button> Page principal</button></Link>
  

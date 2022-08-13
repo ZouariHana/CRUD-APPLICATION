@@ -161,6 +161,34 @@ app.delete('/api/delete/:id', (req, res) => {
 
 });
 
+  /***************************fill clienttypes table *************************/
+  app.post("/api/fill", (req, res) => {
+    
+    table = req.body.table ;
+    typeFields = req.body.typeFields ;
+    const list = [];
+
+    let sql = 'INSERT INTO clienttypes (type, field1, field2, field3, field4, field5) VALUES (?,?,?,?,?,?)';
+
+    for (let i = 0; i < typeFields.length; i++) {
+            list[i] = typeFields[i].field ; 
+        }
+        if (typeFields.length < 5){
+            for (let j = typeFields.length + 1 ; j<5 ; j++) {
+                list[j]= null ; 
+            }
+        }
+
+  
+    db.query(sql, [table, ...list] , (err, result) => {
+        console.log(result);
+  
+      res.send(`Column ${table} in clienttypes is filled`);
+  
+    });
+  
+  });
+
 /************************** Admin adding type client ******************/ 
 
 app.post("/api/create", (req, res) => {
@@ -193,6 +221,7 @@ app.post("/api/create", (req, res) => {
     });
   
   });
+
 
 
 app.listen(3001, ()=> {
