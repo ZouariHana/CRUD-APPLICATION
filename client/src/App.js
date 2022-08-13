@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Registration from "./pages/Registration";
-
+import AjoutType from "./components/adminComponents/AjoutType"
 
 import Affichage_cl from './components/Affichage';
 import AddEdit from './components/AddEdit';
@@ -26,7 +26,7 @@ function App() {
           <Route  path='/addcontact'  element={<AddEdit />} />;
           <Route  path='/update/:id'  element={<AddEdit />} />;
           <Route  path='/view/:id'  element={<View />} />;
-
+          <Route  path='/addType'  element={<AjoutType />} />;
         </Routes>
       </Router> 
     );

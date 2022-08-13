@@ -16,7 +16,7 @@ export default function Admin() {
                     </nav>
             </div> 
             <div className='btnss'>
-            <Link to="">
+            <Link to="/addType">
             <button class="buttons" role="buttons"><span class="text">Ajout d'un type de client</span></button>
             </Link>  
             <Link to="">

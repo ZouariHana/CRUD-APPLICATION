@@ -9,19 +9,19 @@ const saltRounds = 10
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-/*const db = mysql.createPool({
+const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "11139598",
     database:"intranetdb",
-});*/
- const db = mysql.createPool({
-     user: 'root',
-     host: 'localhost',
-     password: '',
-     database: 'clientsys',
+});
+//  const db = mysql.createPool({
+//      user: 'root',
+//      host: 'localhost',
+//      password: '',
+//      database: 'clientsys',
     
- })
+//  })
 
 app.use(cors({
     origin: ["http://localhost:3000"],
@@ -160,6 +160,39 @@ app.delete('/api/delete/:id', (req, res) => {
     );
 
 });
+
+/************************** Admin adding type client ******************/ 
+
+app.post("/api/create", (req, res) => {
+    
+    table = req.body.table ;
+    typeFields = req.body.typeFields ;
+
+    let str = `CREATE Table ${table} (id int AUTO_INCREMENT PRIMARY KEY,`;
+
+    for (let i = 0; i < typeFields.length; i++) {
+        str = str + ` ${typeFields[i].field} VARCHAR(100) ,`;
+    }
+    1
+    
+    console.log(typeof(str));
+    str = str.slice(0, -1);
+
+    let sql = str + `)`;
+  
+    db.query(sql, (err) => {
+  
+      if (err) {
+  
+        throw err;
+  
+      }
+  
+      res.send(`Table ${table} created`);
+  
+    });
+  
+  });
 
 
 app.listen(3001, ()=> {
