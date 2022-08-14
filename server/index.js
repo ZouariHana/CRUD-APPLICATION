@@ -98,14 +98,17 @@ app.post('/login', (req, res) =>{
 })
 
 /******************* Manipulation des clients ************** */
-app.post('/api/insert', (req, res) => {
+app.post('/api/insert/:type', (req, res) => {
     console.log(req.body);
-    const nom = req.body.nom;
-    const prenom = req.body.prenom;
-    const CIN = req.body.CIN;
-    const email = req.body.email;
+    const {type} = req.params;
 
-    db.query('INSERT INTO client_phy (Nom, Prenom, CIN, email) VALUES (?,?,?,?)',[nom, prenom, CIN, email],
+    const car1 = req.body.car1;
+    const car2 = req.body.car2;
+    const car3 = req.body.car3;
+    const car4 = req.body.car4;
+    const car5 = req.body.car5;
+
+    db.query(`INSERT INTO ${type} (car1,car2,car3,car4,car5) VALUES (?,?,?,?,?)`,[car1, car2, car3, car4, car5],
     (err, result) => {
     console.log(result)
     }
@@ -113,10 +116,22 @@ app.post('/api/insert', (req, res) => {
 
 });
 
+app.get('/api/get3/:type/:id', (req, res) => {
+    const {id} = req.params;
+    const {type} = req.params;
+    db.query(`SELECT * FROM ${type} WHERE id = ? `, id,
+    (err, result) => {
+    res.send(result)
+    console.log(result)
+    }
+    );
 
-app.get('/api/get/:id', (req, res) => {
-    const { id } = req.params;
-    db.query('SELECT * FROM client_phy WHERE id = ?', id,
+})
+
+
+app.get('/api/get/:type', (req, res) => {
+    const { type} = req.params;
+    db.query('SELECT * FROM clienttypes WHERE type = ?', type,
     (err, result) => {
     res.send(result)
     }
@@ -124,9 +139,9 @@ app.get('/api/get/:id', (req, res) => {
 
 })
 
-app.get('/api/get', (req, res) => {
-
-    db.query('SELECT * FROM client_phy ',
+app.get('/api/get2/:type', (req, res) => {
+    const { type } = req.params;
+    db.query(`SELECT * FROM ${type} `,
     (err, result) => {
     res.send(result)
     }
@@ -134,25 +149,30 @@ app.get('/api/get', (req, res) => {
 
 })
 
-app.put('/api/update/:id', (req, res) => {
+app.put('/api/update/:type/:id', (req, res) => {
     const { id } = req.params;
-    const nom = req.body.nom;
-    const prenom = req.body.prenom;
-    const CIN = req.body.CIN;
-    const email = req.body.email;
-    db.query("UPDATE client_phy SET Nom=? , Prenom=?, CIN=?, email=? WHERE id=?",[nom, prenom, CIN, email, id],
+    const { type } = req.params;
+
+    const car1 = req.body.car1;
+    const car2 = req.body.car2;
+    const car3 = req.body.car3;
+    const car4 = req.body.car4;
+    const car5 = req.body.car5;
+
+    db.query(`UPDATE ${type} SET car1=? , car2=?, car3 =?, car4=? car5=? WHERE id=?`,[car1, car2, car3, car4, car5 ,id],
     (err, result) => {
     res.send(result)
+    console.log(result)
     }
     );
 
 })
 
-app.delete('/api/delete/:id', (req, res) => {
-    
+app.delete('/api/delete/:type/:id', (req, res) => {
+    const  {type} = req.params;
     const { id } = req.params;
 
-    db.query('DELETE FROM client_phy WHERE id= ?',id,
+    db.query(`DELETE FROM ${type} WHERE id= ?`,id,
     (err, result) => {
         if(err) console.log(err)
         console.log(result)

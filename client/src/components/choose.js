@@ -29,7 +29,7 @@ function Choose() {
                     <dl key={item.id} >
                         
                         <dl>
-                            <Link to="/affichage">
+                            <Link to={`/affichage/${item.type}`}>
                             <button class="buttons" role="buttons"><span class="text">{item.type}</span></button>
                             </Link>  </dl>
 

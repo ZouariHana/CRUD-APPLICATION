@@ -4,15 +4,26 @@ import axios from 'axios'
 import "./view.css"
 
 function View() {
-    const[user, setuser] = useState({});
+    
     const {id} = useParams();
-
+    const {type} = useParams();
+    
+    const[type1, settype1] = useState({});
+    const[user, setuser] = useState({});
     useEffect(()=>{
-        axios.get(`http://localhost:3001/api/get/${id}`)
+        axios.get(`http://localhost:3001/api/get3/${type}/${id} `)
         .then((resp) => setuser({...resp.data[0]}))
         
 
-    },[id])
+    },[type, id])
+
+    useEffect(()=>{
+        axios.get(`http://localhost:3001/api/get/${type}`)
+        .then((resp) => settype1({...resp.data[0]}))
+        
+
+    },[type])
+    
 
 
     return (
@@ -23,27 +34,28 @@ function View() {
 
                 </div>
                 <div className="container">
-                    <strong>ID: </strong>
-                    <span>{id}</span>
+                    
+                    <strong>{type1.field1} </strong>
+                    <span>{user.car1}</span>
                     <br />
                     <br />
-                    <strong>Nom: </strong>
-                    <span>{user.nom}</span>
+                    <strong>{type1.field2} </strong>
+                    <span>{user.car2}</span>
                     <br />
                     <br />
-                    <strong>Prenom: </strong>
-                    <span>{user.prenom}</span>
+                    <strong>{type1.field3} </strong>
+                    <span>{user.car3}</span>
                     <br />
                     <br />
-                    <strong>CIN: </strong>
-                    <span>{user.CIN}</span>
+                    <strong>{type1.field4} </strong>
+                    <span>{user.car4}</span>
                     <br />
                     <br />
-                    <strong>Email: </strong>
-                    <span>{user.email}</span>
+                    <strong>{type1.field5} </strong>
+                    <span>{user.car5}</span>
                     <br />
                     <br />
-                    <Link to="/affichage">
+                    <Link to={`/affichage/${type}`}>
                     <button className="btn btn-edit"> Retour </button>
                     </Link>
 

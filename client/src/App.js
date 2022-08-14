@@ -22,10 +22,10 @@ function App() {
           <Route  path='/'  element={<Initial />} />;
           <Route  path='/main'  element={<Main />} />;
           <Route  path='/choose'  element={<Choose />} />;
-          <Route  path='/affichage'  element={<Affichage_cl />} />;
-          <Route  path='/addcontact'  element={<AddEdit />} />;
-          <Route  path='/update/:id'  element={<AddEdit />} />;
-          <Route  path='/view/:id'  element={<View />} />;
+          <Route  path='/affichage/:type'  element={<Affichage_cl />} />;
+          <Route  path='/addcontact/:type'  element={<AddEdit />} />;
+          <Route  path='/update/:type:id'  element={<AddEdit />} />;
+          <Route  path='/view/:type:id'  element={<View />} />;
           <Route  path='/addType'  element={<AjoutType />} />;
         </Routes>
       </Router> 
