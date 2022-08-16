@@ -67,6 +67,7 @@ function Affichage_cl() {
                     <th>{type1.field3}</th>
                     <th>{type1.field4}</th>
                     <th>{type1.field5}</th>
+                    <th>Statut</th>
                 </tr>
             </thead>
             <tbody>
@@ -79,6 +80,7 @@ function Affichage_cl() {
                             <td>{item.car3}</td>
                             <td>{item.car4}</td>
                             <td>{item.car5}</td>
+                            <td>{item.status}</td>
                           
                             <td>
                                 <Link to={`/update/${type1.type}${item.id}`}>
@@ -87,7 +89,7 @@ function Affichage_cl() {
                         
                                 <button className="btn btn-del" onClick={() => deleteClient(item.id) }>Supprimer</button>
                                
-                                <Link to={`/view/${type1.type}${item.id}`}>
+                                <Link to={`/view/${type1.type}/${item.id}`}>
                                 <button className="btn btn-view">Afficher</button>
                                 </Link>
 

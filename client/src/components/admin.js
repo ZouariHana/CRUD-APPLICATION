@@ -19,7 +19,7 @@ export default function Admin() {
             <Link to="/addType">
             <button class="buttons" role="buttons"><span class="text">Ajout d'un type de client</span></button>
             </Link>  
-            <Link to="">
+            <Link to="/addStatus">
             <button class="buttons" role="buttons"><span class="text">Ajout d'un statut</span></button>
             </Link>  
             <Link to="/choose">

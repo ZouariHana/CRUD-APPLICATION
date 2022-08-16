@@ -9,19 +9,19 @@ const saltRounds = 10
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-/*const db = mysql.createPool({
+const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "11139598",
     database:"intranetdb",
-});*/
-  const db = mysql.createPool({
+});
+/*  const db = mysql.createPool({
       user: 'root',
       host: 'localhost',
       password: '',
       database: 'clientsys',
     
-  })
+  })*/
 
 app.use(cors({
     origin: ["http://localhost:3000"],
@@ -107,8 +107,9 @@ app.post('/api/insert/:type', (req, res) => {
     const car3 = req.body.car3;
     const car4 = req.body.car4;
     const car5 = req.body.car5;
+    const status = req.body.status;
 
-    db.query(`INSERT INTO ${type} (car1,car2,car3,car4,car5) VALUES (?,?,?,?,?)`,[car1, car2, car3, car4, car5],
+    db.query(`INSERT INTO ${type} (car1,car2,car3,car4,car5, status) VALUES (?,?,?,?,?,?)`,[car1, car2, car3, car4, car5,status],
     (err, result) => {
     console.log(result)
     }
@@ -122,7 +123,7 @@ app.get('/api/get3/:type/:id', (req, res) => {
     db.query(`SELECT * FROM ${type} WHERE id = ? `, id,
     (err, result) => {
     res.send(result)
-    console.log(result)
+    // console.log(result)
     }
     );
 
@@ -152,17 +153,20 @@ app.get('/api/get2/:type', (req, res) => {
 app.put('/api/update/:type/:id', (req, res) => {
     const { id } = req.params;
     const { type } = req.params;
+    console.log(id);
+    console.log(type)
 
     const car1 = req.body.car1;
     const car2 = req.body.car2;
     const car3 = req.body.car3;
     const car4 = req.body.car4;
     const car5 = req.body.car5;
+    const status = req.body.status;
 
-    db.query(`UPDATE ${type} SET car1=? , car2=?, car3 =?, car4=? car5=? WHERE id=?`,[car1, car2, car3, car4, car5 ,id],
+    db.query(`UPDATE ${type} SET car1=? , car2=?, car3 =?, car4=? , car5=?, status=? WHERE id=?`,[car1, car2, car3, car4, car5 ,status, id],
     (err, result) => {
     res.send(result)
-    console.log(result)
+    console.log(err)
     }
     );
 
@@ -214,13 +218,14 @@ app.delete('/api/delete/:type/:id', (req, res) => {
 app.post("/api/create", (req, res) => {
     
     table = req.body.table ;
-    typeFields = req.body.typeFields ;
+    // typeFields = req.body.typeFields ;
 
-    let str = `CREATE Table ${table} (id int AUTO_INCREMENT PRIMARY KEY,`;
+    let str = `CREATE Table ${table} (id int AUTO_INCREMENT PRIMARY KEY, car1 VARCHAR(50), car2 VARCHAR(50),car3 VARCHAR(50),car4 VARCHAR(50),car5 VARCHAR(50), status VARCHAR(100))`
+  ;
 
-    for (let i = 0; i < typeFields.length; i++) {
-        str = str + ` ${typeFields[i].field} VARCHAR(100) ,`;
-    }
+    // for (let i = 0; i < typeFields.length; i++) {
+    //     str = str + ` ${typeFields[i].field} VARCHAR(100) ,`;
+    // }
   
     
     console.log(typeof(str));
@@ -244,9 +249,7 @@ app.post("/api/create", (req, res) => {
 
 
 
-app.listen(3001, ()=> {
-    console.log('running on port 3001');
-});
+
 
 /************************** affichage des boutons selon les types ******************/ 
 app.get('/api/get1', (req, res) => {
@@ -258,3 +261,34 @@ app.get('/api/get1', (req, res) => {
     );
 
 })
+/****************************Manipulation des statuts ************************/
+app.post("/api/addStatus", (req, res) => {
+    statut = req.body.status ;
+    let sql = `INSERT INTO statuslist (status) VALUES (?)`;
+    db.query(sql, statut, (err, result) => {
+        console.log(err);
+    })
+
+})
+
+app.get("/api/getStatus", (req, res) => {
+    let sql = db.query(`SELECT * FROM statuslist`, (err, result) => {
+        res.send(result);
+    })
+})
+
+app.delete('/api/deleteStatus/:id', (req, res) => {
+    const {id} = req.params ;
+
+    db.query(`DELETE FROM statuslist WHERE id= ?`,id,
+    (err, result) => {
+        if(err) console.log(err)
+        // console.log(result)
+    }
+    );
+
+});
+
+app.listen(3001, ()=> {
+    console.log('running on port 3001');
+});

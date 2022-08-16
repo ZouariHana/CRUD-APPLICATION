@@ -11,7 +11,9 @@ function AddEdit() {
     const [car3,setcar3] = useState('')
     const [car4,setcar4] = useState('')
     const [car5,setcar5] = useState('')
+    const [status, setStatus] = useState('')
     const [ClientList, setClientlist] = useState([])
+    const [statusList, setStatusList] = useState([]);
     
     
     const[type1, settype1] = useState({});
@@ -19,14 +21,20 @@ function AddEdit() {
     const {id} = useParams();
     const {type} = useParams();
 
+    Axios.get("http://localhost:3001/api/getStatus").then((response) => {
+        setStatusList(response.data);
+    })
+
     useEffect(()=>{
         Axios.get(`http://localhost:3001/api/get3/${type}/${id}`)
         .then((resp) =>  {
+            console.log(resp.data);
             setcar1(resp.data[0].car1)
             setcar2(resp.data[0].car2)
             setcar3(resp.data[0].car3)
             setcar4(resp.data[0].car4)
             setcar5(resp.data[0].car5)
+            setStatus(resp.data[0].status)
            
         })
         
@@ -41,6 +49,14 @@ function AddEdit() {
 
     },[type])
 
+    // useEffect(()=>{
+    //     Axios.get(`http://localhost:3001/api/get2/${type}`)
+    //     .then((resp) => setClientlist(resp.data))
+        
+        
+
+    // },[type])
+
     const addClient = (e) => {
         e.preventDefault();
         /*if(!nom || !prenom || !CIN || !email){
@@ -54,6 +70,7 @@ function AddEdit() {
                 car3: car3,
                 car4: car4,
                 car5: car5,
+                status: status
                 });
             
                 setClientlist([...ClientList, {
@@ -62,6 +79,7 @@ function AddEdit() {
                     car3: car3,
                     car4: car4,
                     car5: car5,
+                    status: status
                 }])
                 
                 alert("Un nouveau client est ajouté")
@@ -75,6 +93,7 @@ function AddEdit() {
                     car3: car3,
                     car4: car4,
                     car5: car5,
+                    status: status
                 });
                 
             
@@ -84,6 +103,7 @@ function AddEdit() {
                     car3: car3,
                     car4: car4,
                     car5: car5,
+                    status: status
                 }])
                
                 
@@ -120,69 +140,88 @@ function AddEdit() {
                    
             }}
             onSubmit={addClient}>
-                <label>{type1.field1}</label>
+                { type1.field1 &&
+                <div>
+                 <label>{type1.field1}</label>
                 <input
                 type="text"
                 id="nom"
-                name="nom"
-                placeholder="votre nom" 
+                name="nom" 
                 value={car1 || ""}
                 onChange={(event) =>{
                     setcar1(event.target.value);
                   }}
                 />
+                </div> }
 
                 
 
+                { type1.field2 &&
+                <div>
                 <label>{type1.field2}</label>
                 <input
                 type="text"
                 id="prenom"
                 name="prenom"
-                placeholder="votre prenom"
                 value={car2 || ""}
                 onChange={(event) =>{
                     setcar2(event.target.value);
                   }}
                 />
+                </div> }
                 
-
+         
+                { type1.field3 &&
+                <div>
                 <label>{type1.field3}</label>
                 <input
                 type="text"
                 id="CIN"
                 name="CIN"
-                placeholder="votre CIN"
                 value={car3 || "" }
                 onChange={(event) =>{
                     setcar3(event.target.value);
                   }}
                 />
+                </div> }
                 
+                { type.field4 && 
+                <div>
                 <label>{type1.field4}</label>
                 <input
                 type="email"
                 id="email"
                 name="email"
-                placeholder="votre adresse email"
                 value={car4 || "" }
                 onChange={(event) =>{
                     setcar4(event.target.value);
                   }}
                   />
+                </div> }
 
-                  <label>{type1.field5}</label>
+                { type1.field5 &&
+                <div>
+                <label>{type1.field5}</label>
                 <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="votre adresse email"
+                type="text"
                 value={car5 || "" }
                 onChange={(event) =>{
                     setcar5(event.target.value);
                   }}
                   />
-                
+                </div> }
+
+            <label>Statut</label>
+            <select name="clientStatus" /*id={clientStatus}*/ onChange={(event) => {
+                setStatus(event.target.value);
+            }}>
+              <option value="blank"></option>  
+              {statusList.map((item, index) => {
+                return(
+                    <option>{item.status}</option>
+                )
+              })}
+            </select>
                 <input type="submit" value={id ? "Modifier" :"Sauvegarder"} />
                 <Link to={`/affichage/${type}`}>
                     <input type="button" value="Retour" />

@@ -17,8 +17,9 @@ function Choose() {
                     <nav>
                         <div className="nav-links">
                         <ul>
-                            
+                            <li><a href="/main">Page principale</a></li>
                             <li><a href="/">déconnectez-vous</a></li>
+                            
                         </ul>
                         </div>
                     </nav>

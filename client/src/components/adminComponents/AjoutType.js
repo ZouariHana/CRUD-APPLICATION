@@ -24,7 +24,7 @@ export default function Admin() {
   const createClientTypeTable = () => {
     Axios.post("http://localhost:3001/api/create", {
       table : table,
-      typeFields : typeFields
+      // typeFields : typeFields
 
     }).then((response) => {
       console.log(response.data);
@@ -61,7 +61,7 @@ export default function Admin() {
                     <nav>
                         <div className="nav-links">
                         <ul>
-                            
+                            <li><a href="/main">Page principale</a></li>
                             <li><a href="/">déconnectez-vous</a></li>
                         </ul>
                         </div>
@@ -120,7 +120,7 @@ export default function Admin() {
                                 <button type="button" className="buttons1" onClick={(e) => {
                                     handleClientRemove(index);
                                 }}>
-                                  <span>Remove</span>
+                                  <span>Supprimer</span>
                                 </button>}
                             </div>
                         </div>

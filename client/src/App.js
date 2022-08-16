@@ -12,6 +12,7 @@ import Initial from './components/initial';
 
 import Choose from './components/choose';
 import Admin from './components/admin';
+import AjoutStatut from './components/adminComponents/AjoutStatut';
 
 function App() {
   return ( 
@@ -25,8 +26,9 @@ function App() {
           <Route  path='/affichage/:type'  element={<Affichage_cl />} />;
           <Route  path='/addcontact/:type'  element={<AddEdit />} />;
           <Route  path='/update/:type:id'  element={<AddEdit />} />;
-          <Route  path='/view/:type:id'  element={<View />} />;
+          <Route  path='/view/:type/:id'  element={<View />} />;
           <Route  path='/addType'  element={<AjoutType />} />;
+          <Route  path='/addStatus'  element={<AjoutStatut/>} />;
         </Routes>
       </Router> 
     );

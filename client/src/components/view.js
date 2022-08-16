@@ -55,6 +55,10 @@ function View() {
                     <span>{user.car5}</span>
                     <br />
                     <br />
+                    <strong>Statut </strong>
+                    <span>{user.status}</span>
+                    <br />
+                    <br />
                     <Link to={`/affichage/${type}`}>
                     <button className="btn btn-edit"> Retour </button>
                     </Link>
