@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Axios from "axios";
-// import "./AjoutStatut.css"
+import "./AjoutStatut.css"
 import { Link } from 'react-router-dom';
 
 export default function AjoutStatut() {
@@ -35,7 +35,7 @@ export default function AjoutStatut() {
       </div>
     <div className='pageBody'>
         <div className='addStatus'>
-            <input placeholder='Ajouter un statut' onChange={(event) => {
+            <input type="ajout" placeholder='Ajouter un statut' onChange={(event) => {
                 setStatus(event.target.value);
             }}></input>
             <button className='buttons1' onClick={() => {
@@ -43,17 +43,17 @@ export default function AjoutStatut() {
             }}>Appliquez</button>
         </div>
         <div className='show'>
-        <h1>Output</h1>
+      <table>
         { statusList.map((item, index) => {
             return(
                 <div>
-                    <h1>{item.status}</h1>
-                    <button className='buttons1' onClick ={ () => {
+                    <td><h1>{item.status}</h1></td>
+                    <td><button className='buttons1' onClick ={ () => {
                         deleteStatus(item.id);
-                    }}>Supprimer</button>
+                    }}>Supprimer</button></td>
                 </div>
             ) 
-        })}    
+        })} </table>   
         </div> 
     </div>
     </div>

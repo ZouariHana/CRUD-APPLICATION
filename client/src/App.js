@@ -13,7 +13,7 @@ import Initial from './components/initial';
 import Choose from './components/choose';
 import Admin from './components/admin';
 import AjoutStatut from './components/adminComponents/AjoutStatut';
-
+import AjoutRole from './components/adminComponents/ajoutRole';
 function App() {
   return ( 
       <Router>
@@ -29,6 +29,7 @@ function App() {
           <Route  path='/view/:type/:id'  element={<View />} />;
           <Route  path='/addType'  element={<AjoutType />} />;
           <Route  path='/addStatus'  element={<AjoutStatut/>} />;
+          <Route  path='/addRole'  element={<AjoutRole/>} />;
         </Routes>
       </Router> 
     );

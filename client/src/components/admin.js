@@ -21,9 +21,12 @@ export default function Admin() {
             </Link>  
             <Link to="/addStatus">
             <button class="buttons" role="buttons"><span class="text">Ajout d'un statut</span></button>
-            </Link>  
+            </Link>
+            <Link to="/addRole">
+            <button class="buttons" role="buttons"><span class="text">Gestion des employés</span></button>
+            </Link>   
             <Link to="/choose">
-            <button class="buttons" role="buttons"><span class="text">gestion des clients</span></button>
+            <button class="buttons" role="buttons"><span class="text">Gestion des clients</span></button>
             </Link>  
             </div>
             <img src={img5} class="feature-img" />

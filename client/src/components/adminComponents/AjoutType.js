@@ -67,7 +67,7 @@ export default function Admin() {
                         </div>
                     </nav>
     </div>   
-
+    <div className='body1'>
     <div className='instructions'>
                 <h2>- Ne laissez pas de champ(s) vides(s) quand vous appliquez. <br/>
                 -Les noms des champs ne doivent pas contenir d'espace entre les mots.<br/>
@@ -127,16 +127,17 @@ export default function Admin() {
                       ))};
               </div>
             </form>
-
-          </div> 
-        }
-
-        <div className='but'>
+          </div>
+          
+        }<div className='but'>
           <button type='button' className='buttons1'  onClick={() => {
           createClientTypeTable();
           fillClientTypesTable();
           }}>Appliquez</button>
         </div>
+        </div> 
+
+        
     
     
 

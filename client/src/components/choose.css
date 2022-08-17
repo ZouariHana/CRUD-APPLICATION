@@ -65,12 +65,12 @@ nav{
 
 
 .btnss{
-    display: inline-table;
+    display:grid;
     margin-top: 45px;
     
 }
 .buttons {
-    width:400px;margin: 5% 10%;
+    width:400px;margin: 2% 10%;
       background-color: #cf245f;
       background-image: linear-gradient(to bottom right, #fcd34d, #ef4444, #ec4899);
       border: 0;

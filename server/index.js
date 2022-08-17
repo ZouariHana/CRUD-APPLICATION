@@ -9,19 +9,19 @@ const saltRounds = 10
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-const db = mysql.createPool({
+/*const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "11139598",
     database:"intranetdb",
-});
-/*  const db = mysql.createPool({
+});*/
+ const db = mysql.createPool({
       user: 'root',
       host: 'localhost',
       password: '',
       database: 'clientsys',
     
-  })*/
+  })
 
 app.use(cors({
     origin: ["http://localhost:3000"],
@@ -289,6 +289,47 @@ app.delete('/api/deleteStatus/:id', (req, res) => {
 
 });
 
+/****************************Manipulation des employés ************************/
+
+
+app.delete('/api/del/:id', (req, res) => {
+    
+    const { id } = req.params;
+
+    db.query(`DELETE FROM users WHERE id= ?`,id,
+    (err, result) => {
+        if(err) console.log(err)
+        console.log(result)
+    }
+    );
+
+});
+
+app.put('/api/up/:id', (req, res) => {
+    const { id } = req.params;
+    
+
+    db.query(`UPDATE users SET role="agent"  WHERE id=?`,id,
+    (err, result) => {
+    res.send(result)
+    console.log(err)
+    }
+    );
+
+})
+app.get('/api/getEmp', (req, res) => {
+    
+    db.query('SELECT * FROM users ', 
+    (err, result) => {
+    res.send(result)
+    }
+    ); 
+
+})
+
+
+
+/**********************************************************************************/
 app.listen(3001, ()=> {
     console.log('running on port 3001');
 });
