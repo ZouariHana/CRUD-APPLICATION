@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Axios from 'axios'
 import './Registration.css'
 //import { Link } from 'react-router-dom';
-
+import Header from './Header';
 
 export default function Registration() {
     const [username, setUsername] = useState('');
@@ -67,16 +67,8 @@ export default function Registration() {
     
   return (
     <div className="App">
-    <div className="header">
-                    <nav>
-                        <div className="nav-links">
-                        <ul>
-                            
-                            <li><a href="/">Home</a></li>
-                        </ul>
-                        </div>
-                    </nav>
-            </div>       
+        
+        <Header/>
         <div className="body">
             
             <h2>Si vous etes un nouveau employé vous pouvez s'inscrire pour que l'admin puisse vous accorder l'acces au données du client<br/>

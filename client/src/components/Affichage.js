@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom";
 
 import Axios from 'axios';
 import "./Affichage.css"
-
+import Header from "../pages/Header";
 
 function Affichage_cl() {
     
@@ -42,18 +42,8 @@ function Affichage_cl() {
 
     return (
     <div>
-        <div className="header">
-                <nav>
-                    <div className="nav-links">
-                    <ul>
-                        <li><a href="/choose">Rentrez à la page principale</a></li>
-                        <li><a href="/">déconnectez-vous</a></li>
-                        
-
-                    </ul>
-                    </div>
-                </nav>
-        </div>
+        
+        <Header/>
         <div className="Liste">
 
         <h1> {type1.type} </h1>

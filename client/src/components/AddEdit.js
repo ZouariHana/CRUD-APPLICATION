@@ -3,7 +3,7 @@ import {useHistory, useParams, Link} from "react-router-dom";
 import "./AddEdit.css";
 import Axios from "axios";
 
-
+import Header from "../pages/Header";
 
 function AddEdit() {
     const [car1,setcar1] = useState('')
@@ -118,17 +118,8 @@ function AddEdit() {
 
     return (
         <div>
-        <div className="header">
-                <nav>
-                    <div className="nav-links">
-                    <ul>
-                        
-                        <li><a href="/">déconnectez-vous </a></li>
-                    </ul>
-                    </div>
-                </nav>
-        </div>
         
+        <Header/>
         
         <div className="formulaire" >
             <h1 >Ajout d'un client</h1>

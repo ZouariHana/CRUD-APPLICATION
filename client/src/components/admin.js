@@ -2,19 +2,13 @@ import React from 'react'
 import {Link} from "react-router-dom";
 import "./choose.css"
 import img5 from "./img5.jpg"
+import Header from '../pages/Header';
 export default function Admin() {
+  
   return (
     <div>
-       <div className="header">
-                    <nav>
-                        <div className="nav-links">
-                        <ul>
-                            
-                            <li><a href="/">déconnectez-vous</a></li>
-                        </ul>
-                        </div>
-                    </nav>
-            </div> 
+
+            <Header/>
             <div className='btnss'>
             <Link to="/addType">
             <button class="buttons" role="buttons"><span class="text">Ajout d'un type de client</span></button>

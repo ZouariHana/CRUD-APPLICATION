@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import Axios from "axios";
 import "./ajoutRole.css"
 import { Link } from 'react-router-dom';
-
+import Header from '../../pages/Header';
 export default function AjoutRole() {
   const [EmpList, setEmpList] = useState([])
 
@@ -30,16 +30,8 @@ export default function AjoutRole() {
   return (
     
     <div>
-    <div className="header">
-                    <nav>
-                        <div className="nav-links">
-                        <ul>
-                            <li><a href="/main">Page principale</a></li>
-                            <li><a href="/">déconnectez-vous</a></li>
-                        </ul>
-                        </div>
-                    </nav>
-    </div>  
+    
+    <Header/>
     <div className='page' >
     <div className='choisir'>
       <h1>Liste des employés</h1>

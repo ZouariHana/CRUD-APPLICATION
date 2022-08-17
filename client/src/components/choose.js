@@ -3,8 +3,18 @@ import "./choose.css"
 import img2 from "./img2.jpg"
 import React, {useState, useEffect} from "react";
 import {useParams, Link} from "react-router-dom";
-
+import Header from "../pages/Header";
 function Choose() {
+      
+  axios.defaults.withCredentials = true ;
+    const [role, setRole] = useState("")
+    useEffect(() => {
+      axios.get("http://localhost:3001/login").then((response) => {
+        if (response.data.loggedIn=== true){
+          setRole(response.data.user[0].role);      }
+      })
+    }, [])
+
     const [typelist, settypelist] = useState([])
     useEffect(() => {
         axios.get("http://localhost:3001/api/get1").then((response) => {
@@ -13,17 +23,8 @@ function Choose() {
       }, [])
     return (
         <div>
-            <div className="header">
-                    <nav>
-                        <div className="nav-links">
-                        <ul>
-                            <li><a href="/main">Page principale</a></li>
-                            <li><a href="/">déconnectez-vous</a></li>
-                            
-                        </ul>
-                        </div>
-                    </nav>
-            </div>       
+            
+            <Header/>    
             <tbody>
                 {typelist.map((item, index) => {
                 return (

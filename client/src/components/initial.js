@@ -2,20 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./initial.css"
 import img1 from "./img1.jpg"
-
+import Header from "../pages/Header";
 export default function Initial () {  
   return (
   <div>
-      <div className="header">
-          <nav>
-            <div className="nav-links">
-              <ul>
-                        
-              <li><a href="/registration">Connectez-vous</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
+      
+      <Header/>
         <div className="content">
             <h1>La relation <br/>client</h1>
             <p>La relation client décrit la manière dont <br/>une entreprise  

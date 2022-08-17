@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Axios from "axios";
 import "./AjoutStatut.css"
 import { Link } from 'react-router-dom';
-
+import Header from '../../pages/Header';
 export default function AjoutStatut() {
   const [status, setStatus] = useState('');
   const [statusList, setStatusList] = useState([]);
@@ -23,16 +23,8 @@ export default function AjoutStatut() {
   })
   return (
     <div>
-      <div className="header">
-            <nav>
-                <div className="nav-links">
-                 <ul>
-                    <li><Link to ="/main">Page principale</Link></li>
-                    <li><Link to="/">déconnectez-vous</Link></li>
-                </ul>
-                </div>
-            </nav>
-      </div>
+      
+      <Header/>
     <div className='pageBody'>
         <div className='addStatus'>
             <input type="ajout" placeholder='Ajouter un statut' onChange={(event) => {

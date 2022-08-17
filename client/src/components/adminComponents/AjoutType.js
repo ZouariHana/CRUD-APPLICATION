@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Axios from "axios";
 import "./AjoutType.css"
 import { Link } from 'react-router-dom';
-
+import Header from '../../pages/Header';
 export default function Admin() {
   const [table , setTable] = useState("");
 
@@ -57,16 +57,8 @@ export default function Admin() {
 // }
   return(
   <div>
-    <div className="header">
-                    <nav>
-                        <div className="nav-links">
-                        <ul>
-                            <li><a href="/main">Page principale</a></li>
-                            <li><a href="/">déconnectez-vous</a></li>
-                        </ul>
-                        </div>
-                    </nav>
-    </div>   
+    
+    <Header/>  
     <div className='body1'>
     <div className='instructions'>
                 <h2>- Ne laissez pas de champ(s) vides(s) quand vous appliquez. <br/>
