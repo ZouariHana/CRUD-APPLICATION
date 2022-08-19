@@ -16,10 +16,15 @@ export default function AjoutRole() {
   
     const addEmployee = (id) => {
       if(window.confirm("Etes vous sures que vous voulez ajouter cet employé ?"))
-      Axios.put(`http://localhost:3001/api/up/${id}`)
+      Axios.put(`http://localhost:3001/api/upag/${id}`)
   
     }
 
+    const addAdmin = (id) => {
+      if(window.confirm("Etes vous sures que vous voulez ajouter cet admin ?"))
+      Axios.put(`http://localhost:3001/api/upad/${id}`)
+  
+    }
 
     const deleteEmployee = (id) => {
       if(window.confirm("Etes vous sures que vous voulez supprimer cet employé ?"))
@@ -53,14 +58,18 @@ export default function AjoutRole() {
                             <td>{item.role}</td>
                            
                             <td>
+                                <button className="btn btn-sup" onClick={() => deleteEmployee(item.id) }>Supprimer </button>
                                 { !item.role &&
-                                <div>
-                               
-                                <button className="btn btn-sup" onClick={() => deleteEmployee(item.id) }>Supprimer l'employé</button>
-                                <button className="btn btn-ajt" onClick={() => addEmployee(item.id) }>ajouter comme employé</button>
+                                <div>                
+                                <button className="btn btn-ajt" onClick={() => addEmployee(item.id) }>Ajouter comme employé</button>
+                                <button className="btn btn-ajt" onClick={() => addAdmin(item.id) }>Ajouter comme admin</button>
                                 </div> 
                                 || item.role=="agent" &&
-                                <button className="btn btn-sup" onClick={() => deleteEmployee(item.id) }>Supprimer l'employé</button>
+                                <div><button className="btn btn-ajt" onClick={() => addAdmin(item.id) }>Transformer en admin</button></div>
+                                
+                                || item.role=="admin" &&
+                                <div><button className="btn btn-ajt" onClick={() => addEmployee(item.id) }>Transformer en employé</button></div>
+                                
                                 }
 
                             </td>

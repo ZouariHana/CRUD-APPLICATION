@@ -305,11 +305,24 @@ app.delete('/api/del/:id', (req, res) => {
 
 });
 
-app.put('/api/up/:id', (req, res) => {
+app.put('/api/upag/:id', (req, res) => {
     const { id } = req.params;
     
 
     db.query(`UPDATE users SET role="agent"  WHERE id=?`,id,
+    (err, result) => {
+    res.send(result)
+    console.log(err)
+    }
+    );
+
+})
+
+app.put('/api/upad/:id', (req, res) => {
+    const { id } = req.params;
+    
+
+    db.query(`UPDATE users SET role="admin"  WHERE id=?`,id,
     (err, result) => {
     res.send(result)
     console.log(err)
