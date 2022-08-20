@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import Axios from 'axios'
+import {useNavigate} from "react-router-dom";
+import Axios from 'axios';
 import './Registration.css'
+
 //import { Link } from 'react-router-dom';
 import Header from './Header';
-
 export default function Registration() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -16,7 +17,7 @@ export default function Registration() {
 
     const [msg, setmsg] = useState("")
 
-
+    const navigate = useNavigate()
     Axios.defaults.withCredentials = true ;
 
     const register = () => {
@@ -32,6 +33,7 @@ export default function Registration() {
             userConn : usernameConn,
             pwdConn: passwordConn 
         }).then( (response) => {
+            console.log(response)
             setmsg("")
             if (response.data.message) {
                 alert(response.data.message);
@@ -48,8 +50,7 @@ export default function Registration() {
                 }
                 else{
                     
-                    alert(`Vous etes connecté(e)!`);
-                    setmsg("Accédez à la page ");
+                    navigate("/main")
                     
                 }
                 

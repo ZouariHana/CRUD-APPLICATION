@@ -38,7 +38,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24,
+        expires: 1000 * 60 * 60 * 24,
     }
 
 })
@@ -65,6 +65,7 @@ app.post('/register', (req, res) => {
 })
 
 app.get('/login', (req, res) => {
+    console.log(req.session.user)
     if (req.session.user) {
         res.send({ loggedIn: true, user: req.session.user});
     } else {
@@ -96,7 +97,11 @@ app.post('/login', (req, res) =>{
     }
     )
 })
-
+app.get('/logout', (req, res) => {
+    res.clearCookie("userId",{path:"/"});
+    req.session.destroy();
+    res.send({ loggedIn: false}); 
+})
 /******************* Manipulation des clients ************** */
 app.post('/api/insert/:type', (req, res) => {
     console.log(req.body);

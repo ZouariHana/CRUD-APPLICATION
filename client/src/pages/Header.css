@@ -1,8 +1,10 @@
 .header{
-    height: 55px;
+    height: 65px;
     width:100%;
     position: relative;
     background-color:salmon;
+    left: 0;
+    right: 0;
 }
 nav{
     display:flex;
@@ -11,8 +13,8 @@ nav{
     align-items: center;
 }
 .nav-links{
-    flex: 1;
-    text-align: left;
+    flex: 1 1 auto;
+   
     
 }
 
@@ -21,12 +23,14 @@ nav{
     display: inline-block;
     padding: 2px 12px;
     position: relative;
+    margin-left: auto;
 }
 .nav-links ul li a{
     list-style: none;
     display: inline-block;
     padding: 8px 12px;
     position: relative;
+    margin-left: auto;
 }
 .nav-links ul li a{
     color: white;
@@ -48,3 +52,59 @@ nav{
 .nav-links ul li:hover::after{
     width: 100%;
 }
+
+.container {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .center {
+    width: 180px;
+    height: 60px;
+    position: absolute;
+  }
+  
+  .btnnn {
+    
+    color: #fff;
+    width: 180px;
+    height: 50px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #91C9FF;
+    outline: none;
+    transition: 1s ease-in-out;
+  }
+  
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    transition: 1s ease-in-out;
+  }
+  
+  .btnnn:hover {
+    transition: 1s ease-in-out;
+    background: royalblue;
+  }
+  
+  .btnnn:hover svg {
+    stroke-dashoffset: -480;
+  }
+  
+  .btnnn span {
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+  }

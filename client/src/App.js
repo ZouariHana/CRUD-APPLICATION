@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Registration from "./pages/Registration";
 import AjoutType from "./components/adminComponents/AjoutType"
+import ProtectedRoutes from './ProtectedRoutes';
 
 import Affichage_cl from './components/Affichage';
 import AddEdit from './components/AddEdit';
@@ -19,9 +20,10 @@ function App() {
       <Router>
         <Routes>
           <Route path= '/registration'  element={<Registration/>} />;
-          <Route path= '/Admin'  element={<Admin/>} />;
           <Route  path='/'  element={<Initial />} />;
           <Route  path='/main'  element={<Main />} />;
+        <Route element={<ProtectedRoutes />} >
+          <Route path= '/Admin'  element={<Admin/>} />
           <Route  path='/choose'  element={<Choose />} />;
           <Route  path='/affichage/:type'  element={<Affichage_cl />} />;
           <Route  path='/addcontact/:type'  element={<AddEdit />} />;
@@ -30,6 +32,7 @@ function App() {
           <Route  path='/addType'  element={<AjoutType />} />;
           <Route  path='/addStatus'  element={<AjoutStatut/>} />;
           <Route  path='/addRole'  element={<AjoutRole/>} />;
+        </Route>
         </Routes>
       </Router> 
     );
