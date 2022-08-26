@@ -1,10 +1,26 @@
 const express = require("express");
 const bodyParser = require ('body-parser')
+const multer  = require('multer')
+const path = require('path')
+
 const app = express();
 const mysql = require('mysql');
 const cors = require ('cors');
 const bcrypt = require('bcrypt');
 const saltRounds = 10
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) =>{
+        cb(null, 'request')
+    },
+    filename: (req, file, cb) => {
+        console.log(file)
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+
+});
+const upload = multer({storage})
+app.use(express.static('request'))
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -344,9 +360,82 @@ app.get('/api/getEmp', (req, res) => {
     ); 
 
 })
+/********hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh********************Historique********************************************/
+app.post("/api/upload/:type/:id/:nom/:date", upload.single('file'), (req, res) => {
+    const {type} = req.params;
+    const {id} = req.params;
+    const {nom} = req.params;
+    const {date} = req.params;
+    console.log(req.file)
+    if (!req.file) {
+        console.log("No file upload");
+    } else {
+        console.log(req.file.filename)
+        var imgsrc =  req.file.filename 
+        console.log(req.file.originalname)
+        var imgorg =req.file.originalname
+        var insertData = "INSERT INTO historique (image,imageorg,type,idt,nom,dateenv) VALUES(?,?,?,?,?,?)  "
+        db.query(insertData, [imgsrc,imgorg,type,id,nom, date], (err, result) => {
+            if (err) throw err
+            
+            console.log("file uploaded")
+        })
+    }
+    })
 
 
 
+app.get('/api/gethis/:type/:id', (req, res) => {
+    const { type} = req.params;
+    const { id} = req.params;
+    db.query('SELECT * FROM historique WHERE type = ? AND idt= ?', [type,id],
+    (err, result) => {
+        console.log(err)
+    res.send(result)
+    }
+    
+    );
+
+})
+
+app.delete('/api/delete/:id1', (req, res) => {
+    const { id1 } = req.params;
+
+    db.query(`DELETE FROM historique WHERE id= ?`,id1,
+    (err, result) => {
+        if(err) console.log(err)
+        console.log(result)
+    }
+    );
+
+});
+
+app.put("/api/upload/:id/:date/:modif", upload.single('file'), (req, res) => {
+  
+    const {id} = req.params;
+    const {modif} = req.params;
+    const {date} = req.params;
+    console.log(req.file)
+    if (!req.file) {
+        console.log("No file upload");
+    } else {
+        console.log(req.file.filename)
+        var imgsrc =  req.file.filename 
+        console.log(req.file.originalname)
+        var imgorg =req.file.originalname
+        var insertData = "UPDATE historique SET imagerep =? , imagereporg = ? , daterep = ? , changement=?  WHERE id=?  "
+        db.query(insertData, [imgsrc,imgorg,date,modif,id], (err, result) => {
+            if (err) throw err
+            
+            console.log("file uploaded")
+        })
+    }
+    })
+
+  app.get(`/api/down/:image`,(req,res) => {
+    const { image } = req.params;
+    res.download(`./request/${image}`)
+  })  
 /**********************************************************************************/
 app.listen(3001, ()=> {
     console.log('running on port 3001');

@@ -15,6 +15,10 @@ import Choose from './components/choose';
 import Admin from './components/admin';
 import AjoutStatut from './components/adminComponents/AjoutStatut';
 import AjoutRole from './components/adminComponents/ajoutRole';
+import Historique from './components/contactComponents/Historique';
+import AddRep from './components/contactComponents/addRep';
+
+
 function App() {
   return ( 
       <Router>
@@ -32,7 +36,10 @@ function App() {
           <Route  path='/addType'  element={<AjoutType />} />;
           <Route  path='/addStatus'  element={<AjoutStatut/>} />;
           <Route  path='/addRole'  element={<AjoutRole/>} />;
+          
         </Route>
+        <Route  path='/histo/:type/:id'  element={<Historique/>} />;
+        <Route  path='/rep/:id'  element={<AddRep/>} />;
         </Routes>
       </Router> 
     );

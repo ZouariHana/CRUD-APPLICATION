@@ -13,8 +13,6 @@ function Affichage_cl() {
     const [car4,setcar4] = useState('')
     const [car5,setcar5] = useState('')
 
- 
-
     const [ClientList, setClientlist] = useState([])
 
     const[type1, settype1] = useState({});
@@ -81,6 +79,10 @@ function Affichage_cl() {
                                
                                 <Link to={`/view/${type1.type}/${item.id}`}>
                                 <button className="btn btn-view">Afficher</button>
+                                </Link>
+
+                                <Link to={`/histo/${type1.type}/${item.id}`}>
+                                <button className="btn btn-hist">Historique</button>
                                 </Link>
 
 
