@@ -168,7 +168,7 @@ function Historique() {
                             <td>{item.daterep}</td>
                             <td><img src={`//localhost:3001/${item.imagerep}`} alt={item.imagereporg} class="req"/>
                             <br/> <button onClick={(e)=> download(e,item.imagerep)}>Télécharger</button></td>
-
+                            <td>{item.changement}</td>
                             <td>
                               
                                 <Link to={`/rep/${item.id}`}>

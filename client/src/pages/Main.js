@@ -2,7 +2,8 @@ import  Axios from 'axios'
 import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 import Admin from "../components/admin"
-import Choose from '../components/choose'
+import AffichageTotal from '../components/AffichageTotal';
+// import Choose from '../components/choose'
 
 
 export default function Main() {
@@ -17,7 +18,7 @@ export default function Main() {
     })
   }, [])
   return (
-  <div> {role === "admin" && <Admin/> }{role === "agent" && <Choose/>}</div> 
+  <div> {role === "admin" && <Admin/> }{role === "agent" && <AffichageTotal/>}</div> 
 
   )
 }

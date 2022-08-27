@@ -6,14 +6,9 @@ import "./Affichage.css"
 import Header from "../pages/Header";
 
 function Affichage_cl() {
-    
-    const [car1,setcar1] = useState('')
-    const [car2,setcar2] = useState('')
-    const [car3,setcar3] = useState('')
-    const [car4,setcar4] = useState('')
-    const [car5,setcar5] = useState('')
 
     const [ClientList, setClientlist] = useState([])
+    const [query, setQuery] = useState('');
 
     const[type1, settype1] = useState({});
     const {type} = useParams();
@@ -26,22 +21,31 @@ function Affichage_cl() {
     },[type])
     
 
-    const deleteClient = (id) => {
-        if(window.confirm("Vous etes sures que vous voulez supprimer ce client ?"))
-        Axios.delete(`http://localhost:3001/api/delete/${type}/${id}`)
-    
-      }
 
       useEffect(() => {
-        Axios.get(`http://localhost:3001/api/get2/${type}`).then((response) => {
+        Axios.get(`http://localhost:3001/api/getClients/${type}?q=${query}`).then((response) => {
           setClientlist(response.data)
         })
-      }, [type])
+      }, [type, query])
+
+      const deleteClient = (id) => {
+        console.log(id);
+        if(window.confirm("Vous etes sures que vous voulez supprimer ce client ?"))
+        Axios.delete(`http://localhost:3001/api/delete2/${id}`).catch((error) => console.log(error))
+    
+      }
 
     return (
     <div>
         
         <Header/>
+        <input 
+            type="search"
+            placeholder="Rechercher..."
+            onChange={(event) => {
+                  setQuery(event.target.value);
+            }}
+            />
         <div className="Liste">
 
         <h1> {type1.type} </h1>
@@ -63,15 +67,15 @@ function Affichage_cl() {
                 return (
                     <tr key={item.id} >
                         
-                            <td>{item.car1}</td>
-                            <td>{item.car2}</td>
-                            <td>{item.car3}</td>
-                            <td>{item.car4}</td>
-                            <td>{item.car5}</td>
+                            <td>{item[type1.field1]}</td>
+                            <td>{item[type1.field2]}</td>
+                            <td>{item[type1.field3]}</td>
+                            <td>{item[type1.field4]}</td>
+                            <td>{item[type1.field5]}</td>
                             <td>{item.status}</td>
                           
                             <td>
-                                <Link to={`/update/${type1.type}${item.id}`}>
+                                <Link to={`/update/${type1.type}/${item.id}`}>
                                 <button className="btn btn-upd">Modifier</button>
                                 </Link>
                         
@@ -96,6 +100,9 @@ function Affichage_cl() {
         </table>
         <Link to={`/addContact/${type}`}>
             <button className="btn btn-contact"> Ajouter un client </button>
+        </Link>
+        <Link to={`/showIntegral`}>
+            <button className="btn btn-contact"> Afficher tout </button>
         </Link>
 
   </div></div>

@@ -25,19 +25,19 @@ app.use(express.static('request'))
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
-/*const db = mysql.createPool({
+const db = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "11139598",
     database:"intranetdb",
-});*/
- const db = mysql.createPool({
-      user: 'root',
-      host: 'localhost',
-      password: '',
-      database: 'clientsys',
+});
+//  const db = mysql.createPool({
+//       user: 'root',
+//       host: 'localhost',
+//       password: '',
+//       database: 'clientsys',
     
-  })
+//   })
 
 app.use(cors({
     origin: ["http://localhost:3000"],
@@ -119,36 +119,36 @@ app.get('/logout', (req, res) => {
     res.send({ loggedIn: false}); 
 })
 /******************* Manipulation des clients ************** */
-app.post('/api/insert/:type', (req, res) => {
-    console.log(req.body);
-    const {type} = req.params;
+// app.post('/api/insert/:type', (req, res) => {
+//     console.log(req.body);
+//     const {type} = req.params;
 
-    const car1 = req.body.car1;
-    const car2 = req.body.car2;
-    const car3 = req.body.car3;
-    const car4 = req.body.car4;
-    const car5 = req.body.car5;
-    const status = req.body.status;
+//     const car1 = req.body.car1;
+//     const car2 = req.body.car2;
+//     const car3 = req.body.car3;
+//     const car4 = req.body.car4;
+//     const car5 = req.body.car5;
+//     const status = req.body.status;
 
-    db.query(`INSERT INTO ${type} (car1,car2,car3,car4,car5, status) VALUES (?,?,?,?,?,?)`,[car1, car2, car3, car4, car5,status],
-    (err, result) => {
-    console.log(result)
-    }
-    );
+//     db.query(`INSERT INTO ${type} (car1,car2,car3,car4,car5, status) VALUES (?,?,?,?,?,?)`,[car1, car2, car3, car4, car5,status],
+//     (err, result) => {
+//     console.log(result)
+//     }
+//     );
 
-});
+// });
 
-app.get('/api/get3/:type/:id', (req, res) => {
-    const {id} = req.params;
-    const {type} = req.params;
-    db.query(`SELECT * FROM ${type} WHERE id = ? `, id,
-    (err, result) => {
-    res.send(result)
-    // console.log(result)
-    }
-    );
+// app.get('/api/get3/:type/:id', (req, res) => {
+//     const {id} = req.params;
+//     const {type} = req.params;
+//     db.query(`SELECT * FROM ${type} WHERE id = ? `, id,
+//     (err, result) => {
+//     res.send(result)
+//     // console.log(result)
+//     }
+//     );
 
-})
+// })
 
 
 app.get('/api/get/:type', (req, res) => {
@@ -161,50 +161,50 @@ app.get('/api/get/:type', (req, res) => {
 
 })
 
-app.get('/api/get2/:type', (req, res) => {
-    const { type } = req.params;
-    db.query(`SELECT * FROM ${type} `,
-    (err, result) => {
-    res.send(result)
-    }
-    );
+// app.get('/api/get2/:type', (req, res) => {
+//     const { type } = req.params;
+//     db.query(`SELECT * FROM ${type} `,
+//     (err, result) => {
+//     res.send(result)
+//     }
+//     );
 
-})
+// })
 
-app.put('/api/update/:type/:id', (req, res) => {
-    const { id } = req.params;
-    const { type } = req.params;
-    console.log(id);
-    console.log(type)
+// app.put('/api/update/:type/:id', (req, res) => {
+//     const { id } = req.params;
+//     const { type } = req.params;
+//     console.log(id);
+//     console.log(type)
 
-    const car1 = req.body.car1;
-    const car2 = req.body.car2;
-    const car3 = req.body.car3;
-    const car4 = req.body.car4;
-    const car5 = req.body.car5;
-    const status = req.body.status;
+//     const car1 = req.body.car1;
+//     const car2 = req.body.car2;
+//     const car3 = req.body.car3;
+//     const car4 = req.body.car4;
+//     const car5 = req.body.car5;
+//     const status = req.body.status;
 
-    db.query(`UPDATE ${type} SET car1=? , car2=?, car3 =?, car4=? , car5=?, status=? WHERE id=?`,[car1, car2, car3, car4, car5 ,status, id],
-    (err, result) => {
-    res.send(result)
-    console.log(err)
-    }
-    );
+//     db.query(`UPDATE ${type} SET car1=? , car2=?, car3 =?, car4=? , car5=?, status=? WHERE id=?`,[car1, car2, car3, car4, car5 ,status, id],
+//     (err, result) => {
+//     res.send(result)
+//     console.log(err)
+//     }
+//     );
 
-})
+// })
 
-app.delete('/api/delete/:type/:id', (req, res) => {
-    const  {type} = req.params;
-    const { id } = req.params;
+// app.delete('/api/delete/:type/:id', (req, res) => {
+//     const  {type} = req.params;
+//     const { id } = req.params;
 
-    db.query(`DELETE FROM ${type} WHERE id= ?`,id,
-    (err, result) => {
-        if(err) console.log(err)
-        console.log(result)
-    }
-    );
+//     db.query(`DELETE FROM ${type} WHERE id= ?`,id,
+//     (err, result) => {
+//         if(err) console.log(err)
+//         console.log(result)
+//     }
+//     );
 
-});
+// });
 
   /***************************fill clienttypes table *************************/
   app.post("/api/fill", (req, res) => {
@@ -233,43 +233,6 @@ app.delete('/api/delete/:type/:id', (req, res) => {
     });
   
   });
-
-/************************** Admin adding type client ******************/ 
-
-app.post("/api/create", (req, res) => {
-    
-    table = req.body.table ;
-    // typeFields = req.body.typeFields ;
-
-    let str = `CREATE Table ${table} (id int AUTO_INCREMENT PRIMARY KEY, car1 VARCHAR(50), car2 VARCHAR(50),car3 VARCHAR(50),car4 VARCHAR(50),car5 VARCHAR(50), status VARCHAR(100))`
-  ;
-
-    // for (let i = 0; i < typeFields.length; i++) {
-    //     str = str + ` ${typeFields[i].field} VARCHAR(100) ,`;
-    // }
-  
-    
-    console.log(typeof(str));
-    str = str.slice(0, -1);
-
-    let sql = str + `)`;
-  
-    db.query(sql, (err) => {
-  
-      if (err) {
-  
-        throw err;
-  
-      }
-  
-      res.send(`Table ${table} created`);
-  
-    });
-  
-  });
-
-
-
 
 
 /************************** affichage des boutons selon les types ******************/ 
@@ -436,6 +399,178 @@ app.put("/api/upload/:id/:date/:modif", upload.single('file'), (req, res) => {
     const { image } = req.params;
     res.download(`./request/${image}`)
   })  
+
+/******************************** Database of ALL clients *********************/
+app.post("/api/alter", (req, res) => {
+    
+    table = req.body.table ;
+    typeFields = req.body.typeFields ;
+    let list = [];
+    let sql = `ALTER TABLE clientstable`;
+
+    for (let i = 0; i < typeFields.length; i++) {
+            list[i] = typeFields[i].field ; 
+            sql = sql + ` ADD ${list[i]} VARCHAR(60),`
+        }
+    sql = sql.slice(0,-1);
+  
+    db.query(sql, (err, result) => {
+        console.log(result);
+        console.log(err);
+  
+      res.send(`added to clientstable`);
+  
+    });
+  
+  });
+// app.post("/api/alter", (req, res) => {
+    
+//     table = req.body.table ;
+//     typeFields = req.body.typeFields ;
+//     let list = [];
+//     console.log(req.body);
+
+//     for (let i = 0; i < typeFields.length; i++) {
+//             list[i] = typeFields[i].field ; 
+//             db.query(`IF NOT EXISTS (
+//                 SELECT
+//                   *
+//                 FROM
+//                   INFORMATION_SCHEMA.COLUMNS
+//                 WHERE
+//                   TABLE_NAME = ? AND COLUMN_NAME = ?)
+//               BEGIN
+//                 ALTER TABLE clientstable
+//                   ADD ${list[i]} VARCHAR(60)
+//               END; `, ['clientstable', list[i]], (err, result) => {
+          
+//               res.send(`added ${list[i]} to clientstable`);
+          
+//             });
+          
+    
+  
+    
+  
+//   }});
+  /************** page AffichageTotal******************/
+  app.get('/api/getClients/', (req, res) => {
+    const {q} = req.query;
+    
+
+    const search = (data) => {
+        let keys = Object.keys(data[0]);
+        return data.filter((item) => keys.some((key) => String(item[key]).toLowerCase().includes(q.toLowerCase()))
+        )
+    }
+    db.query('SELECT * FROM clientstable',
+    (err, result) => {
+    res.send(search(result));
+    }
+    );
+
+})
+app.get('/api/getFields', (req, res) => {
+    db.query(`SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'clientstable' ORDER BY ordinal_position ;`,
+    (err, result) => {
+    res.send(result);
+    }
+    );
+
+})
+/********************* Page AddEditIntegral **********************/
+app.post('/api/insertIntegral/:type', (req, res) => {
+    console.log(req.body);
+    type = req.params;
+    console.log(type);
+    console.log(req.body);
+    const fieldContent = req.body.fieldContent ;
+    const fieldList = req.body.fieldList ;
+    let list = []
+    for (let i=0 ; i<=fieldContent.length; i++){
+        list[i] = "?";
+    }
+    const fieldList2 = ['type', 'status', ...fieldList]
+
+    db.query(`INSERT INTO clientstable (${fieldList2}) VALUES (${list}) `, [type.type , ...fieldContent],
+    (err, result) => {
+    console.log(err)
+    }
+    );
+    
+
+});
+
+app.put('/api/update/:type/:id', (req, res) => {
+    const { id } = req.params;
+    const { type } = req.params;
+    console.log(id);
+    console.log(type)
+    const fieldContent = req.body.fieldContent ;
+    const fieldList = req.body.fieldList ;
+    console.log(req.body);
+    let list = []
+    for (let i=0 ; i<fieldContent.length; i++){
+        list[i] = "?";
+    }
+    const fieldList2 = ['type', 'status', ...fieldList]
+    const fieldContent2 = [type, ...fieldContent]
+    sql = `UPDATE clientstable SET`
+    for (let i = 0 ; i< fieldContent2.length ; i++) {
+        sql = sql + ` ${fieldList2[i]} = ?,`
+    }
+    sql = sql.slice(0,-1);
+    sql = sql + ` WHERE id = ?`
+
+    
+
+    db.query(sql,[...fieldContent2, id],
+    (err, result) => {
+    res.send(result)
+    console.log(err)
+    }
+    );
+
+})
+
+app.delete('/api/delete2/:id', (req, res) => {
+    const { id } = req.params;
+    console.log(id);
+    db.query(`DELETE FROM clientstable WHERE id= ?`,id,
+    (err, result) => {
+        if(err) console.log(err)
+        console.log(result);
+    }
+    );
+
+});
+app.get('/api/get3/:type/:id', (req, res) => {
+    const {id} = req.params;
+    const {type} = req.params;
+    db.query(`SELECT * FROM clientstable WHERE id = ? `, id,
+    (err, result) => {
+    res.send(result)
+    // console.log(result)
+    }
+    );
+
+})
+app.get('/api/getClients/:type', (req, res) => {
+    const { type } = req.params;
+    const {q} = req.query;
+
+    const search = (data) => {
+        let keys = Object.keys(data[0]);
+        return data.filter((item) => keys.some((key) => String(item[key]).toLowerCase().includes(q.toLowerCase()))
+        )
+    }
+    db.query(`SELECT * FROM clientstable WHERE type = ? `, type,
+    (err, result) => {
+    res.send(search(result));
+    }
+    );
+
+})
 /**********************************************************************************/
 app.listen(3001, ()=> {
     console.log('running on port 3001');

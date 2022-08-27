@@ -7,11 +7,13 @@ function ProtectedRoutes() {
     const [login1, setlogin1] = useState(false);
     
   
-    
+    useEffect(() => {
       axios.get("http://localhost:3001/login").then((response) => {
         setlogin1(response.data.loggedIn)
          
       });
+    }, [])
+    
     
 
   return (

@@ -19,7 +19,7 @@ export default function Admin() {
             <Link to="/addRole">
             <button class="buttons" role="buttons"><span class="text">Gestion des employés</span></button>
             </Link>   
-            <Link to="/choose">
+            <Link to="/showIntegral">
             <button class="buttons" role="buttons"><span class="text">Gestion des clients</span></button>
             </Link>  
             </div>

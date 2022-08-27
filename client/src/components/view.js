@@ -12,7 +12,9 @@ function View() {
     const[user, setuser] = useState({});
     useEffect(()=>{
         axios.get(`http://localhost:3001/api/get3/${type}/${id} `)
-        .then((resp) => setuser({...resp.data[0]}))
+        .then((resp) => { setuser({...resp.data[0]})
+        console.log(resp.data);}
+        )
         
 
     },[type, id])
@@ -33,29 +35,44 @@ function View() {
                     <p>les détails du client</p>
 
                 </div>
-                <div className="container">
+                <div className="anotherContainer">
                     
-                    <strong>{type1.field1} </strong>
-                    <span>{user.car1}</span>
-                    <br />
-                    <br />
-                    <strong>{type1.field2} </strong>
-                    <span>{user.car2}</span>
-                    <br />
-                    <br />
-                    <strong>{type1.field3} </strong>
-                    <span>{user.car3}</span>
-                    <br />
-                    <br />
-                    <strong>{type1.field4} </strong>
-                    <span>{user.car4}</span>
-                    <br />
-                    <br />
-                    <strong>{type1.field5} </strong>
-                    <span>{user.car5}</span>
-                    <br />
-                    <br />
-                    <strong>Statut </strong>
+                    {type1.field1 && 
+                    <div>
+                    <strong>{type1.field1}: </strong>
+                    <span> {user[type1.field1]}</span>
+                    <br/>
+                    <br/>
+                    </div>}
+                    {type1.field2 && 
+                    <div>
+                    <strong>{type1.field2}: </strong>
+                    <span> {user[type1.field2]}</span>
+                    <br/>
+                    <br/>
+                    </div>}
+                    {type1.field3 && 
+                    <div>
+                    <strong>{type1.field3}: </strong>
+                    <span> {user[type1.field3]}</span>
+                    <br/>
+                    <br/>
+                    </div>}
+                    {type1.field4 && 
+                    <div>
+                    <strong>{type1.field4}: </strong>
+                    <span> {user[type1.field4]}</span>
+                    <br/>
+                    <br/>
+                    </div>}
+                    {type1.field5 && 
+                    <div>
+                    <strong>{type1.field5}: </strong>
+                    <span> {user[type1.field5]}</span>
+                    <br/>
+                    <br/>
+                    </div>}
+                    <strong>Statut: </strong>
                     <span>{user.status}</span>
                     <br />
                     <br />

@@ -28,7 +28,7 @@ export default function Header() {
                     <nav>
                         <div className="nav-links">
                         <ul>
-                            <li><a href="/">Home</a></li>
+                            {login == true && <li><a href="/main">Home</a></li>}
                             {login == false &&
                             <li><a href="/registration">connectez-vous</a></li>
                         

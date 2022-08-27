@@ -6,11 +6,25 @@ import Header from '../../pages/Header';
 export default function Admin() {
   const [table , setTable] = useState("");
 
-  const [clientTypes, setClientTypes] = useState([{clientType : ''}]);
-
   const [typeFields, setTypeFields] = useState([{field : ''}]);
 
   Axios.defaults.withCredentials = true ;
+
+
+  // const [fieldList, setFieldList] = useState([]);
+  // useEffect(
+  //   () => { 
+  //    Axios.get(`http://localhost:3001/api/getFields`)
+  //      .then((resp) => {
+  //        let columns =[]
+  //        console.log(resp.data);
+  //        for (let i = 0 ; i< resp.data.length ; i++){
+  //          columns[i] = resp.data[i].COLUMN_NAME;
+  //        }
+  //        setFieldList(columns);
+ 
+  //    })}, []
+  //    );
 
   const fillClientTypesTable = () => {
     Axios.post("http://localhost:3001/api/fill", {
@@ -18,20 +32,22 @@ export default function Admin() {
       typeFields : typeFields
 
     }).then((response) => {
-      console.log(response.data);
+      alert(response.data);
     });
   }
-  const createClientTypeTable = () => {
-    Axios.post("http://localhost:3001/api/create", {
+
+  const alterClientsTable = () => {
+
+    Axios.post("http://localhost:3001/api/alter", {
       table : table,
-      // typeFields : typeFields
+      typeFields : typeFields,
 
     }).then((response) => {
       console.log(response.data);
       alert(response.data);
     });
     
-  }  
+  } 
 
 
   console.log(typeFields);
@@ -123,8 +139,8 @@ export default function Admin() {
           
         }<div className='but'>
           <button type='button' className='buttons1'  onClick={() => {
-          createClientTypeTable();
           fillClientTypesTable();
+          alterClientsTable();
           }}>Appliquez</button>
         </div>
         </div> 
