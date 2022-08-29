@@ -90,16 +90,20 @@ function AddEdit() {
 
 
             if (!id) {
-
+                if (fieldContent2.length < fields.length) {alert("Veuillez remplir tous les champs")}
+                else {
                 Axios.all([
                     Axios.post(`http://localhost:3001/api/insertIntegral/${type}`,{
                         fieldContent: fieldContent2,
                         fieldList : fields
-                    }),
-                    Axios.post(`http://localhost:3001/api/insert/${type}`,{
-                        fieldContent: fieldContent2,
                     })
+                    // ,
+                    // Axios.post(`http://localhost:3001/api/insert/${type}`,{
+                    //     fieldContent: fieldContent2,
+                    // })
                 ])
+                alert("Un nouveau client est ajouté")
+            }
 
                 // newClient[fieldList[0]] = type;
                 // for (let i=1 ; i<fieldContent2.length; i++) {
@@ -109,7 +113,7 @@ function AddEdit() {
                 // setClientlist2([...ClientList2, newClient])
                 
                 
-                alert("Un nouveau client est ajouté")
+                
             }
 
             else{
