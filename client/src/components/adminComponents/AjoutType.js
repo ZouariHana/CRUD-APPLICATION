@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Axios from "axios";
 import "./AjoutType.css"
 import { Link } from 'react-router-dom';
@@ -11,20 +11,20 @@ export default function Admin() {
   Axios.defaults.withCredentials = true ;
 
 
-  // const [fieldList, setFieldList] = useState([]);
-  // useEffect(
-  //   () => { 
-  //    Axios.get(`http://localhost:3001/api/getFields`)
-  //      .then((resp) => {
-  //        let columns =[]
-  //        console.log(resp.data);
-  //        for (let i = 0 ; i< resp.data.length ; i++){
-  //          columns[i] = resp.data[i].COLUMN_NAME;
-  //        }
-  //        setFieldList(columns);
+  const [fieldList, setFieldList] = useState([]);
+  useEffect(
+    () => { 
+     Axios.get(`http://localhost:3001/api/getFields`)
+       .then((resp) => {
+         let columns =[]
+         console.log(resp.data);
+         for (let i = 0 ; i< resp.data.length ; i++){
+           columns[i] = resp.data[i].COLUMN_NAME;
+         }
+         setFieldList(columns);
  
-  //    })}, []
-  //    );
+     })}, []
+     );
 
   const fillClientTypesTable = () => {
     Axios.post("http://localhost:3001/api/fill", {
@@ -41,6 +41,7 @@ export default function Admin() {
     Axios.post("http://localhost:3001/api/alter", {
       table : table,
       typeFields : typeFields,
+      existingFields: fieldList
 
     }).then((response) => {
       console.log(response.data);

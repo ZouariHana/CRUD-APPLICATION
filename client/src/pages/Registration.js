@@ -72,8 +72,8 @@ export default function Registration() {
         <Header/>
         <div className="body">
             
-            <h2>Si vous etes un nouveau employé vous pouvez s'inscrire pour que l'admin puisse vous accorder l'acces au données du client<br/>
-            Une fois vous obtenez vos accés vous pouvez vous connecter en remplissant les champs ci dessous! (inscription)<br/>
+            <h2>Si vous êtes un nouveau employé vous pouvez s'inscrire pour que l'admin puisse vous accorder l'accès aux données des clients<br/>
+            Une fois vous aurez l'accès vous pouvez vous connecter en remplissant les champs ci dessous! (inscription)<br/>
             NB : Les autres employés ne sont pas concernés que par les champs connexion !
             </h2>
                 <div className='container1'>

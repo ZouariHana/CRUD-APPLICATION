@@ -160,7 +160,7 @@ app.get('/api/get1', (req, res) => {
             list[i] = typeFields[i].field ; 
         }
         if (typeFields.length < 5){
-            for (let j = typeFields.length + 1 ; j<5 ; j++) {
+            for (let j = typeFields.length ; j<5 ; j++) {
                 list[j]= null ; 
             }
         }
@@ -338,12 +338,14 @@ app.post("/api/alter", (req, res) => {
     
     table = req.body.table ;
     typeFields = req.body.typeFields ;
+    existingFields = req.body.existingFields;
     let list = [];
     let sql = `ALTER TABLE clientstable`;
 
     for (let i = 0; i < typeFields.length; i++) {
             list[i] = typeFields[i].field ; 
-            sql = sql + ` ADD ${list[i]} VARCHAR(60),`
+            if (!existingFields.includes(list[i])){
+            sql = sql + ` ADD ${list[i]} VARCHAR(60),` }
         }
     sql = sql.slice(0,-1);
   
